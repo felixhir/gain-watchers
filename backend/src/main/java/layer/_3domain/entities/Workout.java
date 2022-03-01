@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class Workout {
 
-    private final String name;
+    private String name;
     private final String description;
     private LinkedList<WorkoutExercise> exercises;
 
@@ -49,5 +49,12 @@ public class Workout {
         }
         exercises.remove(oldExercise);
         exercises.add(newExercise);
+    }
+
+    public void changeName(String newName) {
+        if(newName.isEmpty()) {
+            throw new IllegalArgumentException("The new name cannot be empty");
+        }
+        this.name = newName;
     }
 }

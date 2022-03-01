@@ -45,7 +45,7 @@ public class Customer {
             throw new IllegalArgumentException("The amount done of a workout must not exceed the weekly limit");
         }
         if (workouts.containsKey(workout)) {
-            // throw new IllegalArgumentException("This workout has already been added and updating the amount is no feature of the current version");
+            throw new IllegalArgumentException("This workout has already been added and updating the amount is no feature of the current version");
         }
         workouts.put(workout, daysPerWeek);
     }
