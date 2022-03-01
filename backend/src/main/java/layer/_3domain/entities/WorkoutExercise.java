@@ -1,14 +1,12 @@
-package layer._3domain.valueObjects;
-
-import layer._3domain.entities.Exercise;
+package layer._3domain.entities;
 
 import java.util.Objects;
 
 public class WorkoutExercise {
 
     private final Exercise exercise;
-    private final int sets;
-    private final int reps;
+    private int sets;
+    private int reps;
 
     public WorkoutExercise(Exercise exercise, int sets, int reps) {
         if(sets < 1) {
@@ -24,6 +22,34 @@ public class WorkoutExercise {
 
     public Exercise getExercise() {
         return exercise;
+    }
+
+    public void addSets(int amount) {
+        if(this.sets + amount <= 0) {
+            throw new IllegalArgumentException();
+        }
+        this.sets += amount;
+    }
+
+    public void subtractSets(int amount) {
+        if(this.sets - amount <= 0) {
+            throw new IllegalArgumentException();
+        }
+        this.sets -= amount;
+    }
+
+    public void addReps(int amount) {
+        if(this.reps + amount <= 0) {
+            throw new IllegalArgumentException();
+        }
+        this.reps += amount;
+    }
+
+    public void subtractReps(int amount) {
+        if(this.reps + amount < 0) {
+            throw new IllegalArgumentException();
+        }
+        this.reps += amount;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package layer._3domain.entities;
 
-import layer._3domain.valueObjects.WorkoutExercise;
-
 import java.util.Collections;
 import java.util.LinkedList;
 
