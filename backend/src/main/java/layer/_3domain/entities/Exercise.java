@@ -1,7 +1,7 @@
 package layer._3domain.entities;
 
+import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Objects;
 
 public class Exercise {
 
@@ -19,8 +19,6 @@ public class Exercise {
         this.name = name;
         this.type = type;
         this.variants = new LinkedList<>();
-        for(ExerciseVariant var: variants) {
-            this.variants.add(var);
-        }
+        Collections.addAll(this.variants, variants);
     }
 }
