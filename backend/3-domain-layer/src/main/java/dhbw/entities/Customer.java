@@ -1,9 +1,7 @@
-package layer._3domain.entities;
+package dhbw.entities;
 
-import layer._3domain.valueObjects.Weight;
-
+import dhbw.valueObjects.Weight;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.UUID;
 
 public class Customer {

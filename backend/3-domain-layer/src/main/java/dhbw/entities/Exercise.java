@@ -1,4 +1,4 @@
-package layer._3domain.entities;
+package dhbw.entities;
 
 import java.util.Collections;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package layer._3domain.valueObjects;
+package dhbw.valueObjects;
 
 import static java.util.Objects.hash;
 
