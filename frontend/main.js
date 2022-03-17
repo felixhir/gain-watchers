@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, dialog } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -10,9 +10,21 @@ const createWindow = () => {
       }
     });
   
+    win.removeMenu();
     win.loadFile('./src/index.html');
+
+    win.webContents.once('dom-ready', () => {
+      dialog.showMessageBox({"message": "Test", "title": "Also Test"});
+    });
 }
 
 app.whenReady().then(() => {
     createWindow();
 });
+
+
+
+try {
+  require('electron-reloader')(module)
+} catch (_) {
+}
