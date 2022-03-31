@@ -1,17 +1,33 @@
 package dhbw.entities;
 
 import dhbw.valueObjects.Weight;
+
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.UUID;
 
+@Entity
+@Table(name = "customer")
 public class Customer {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue
     private final String id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "height")
     private double height;
+
+    @OneToOne
     private Weight weight;
+
+    @Column(name = "bfp")
     private int bodyFatPercentage;
+
+    @Column(name = "availability")
     private int daysAvailablePerWeek;
 
     private HashMap<Workout, Integer> workouts = new HashMap<>();
@@ -36,6 +52,11 @@ public class Customer {
         this.bodyFatPercentage = bodyFatPercentage;
         this.daysAvailablePerWeek = daysAvailablePerWeek;
         this.id = UUID.randomUUID().toString();
+    }
+
+    public Customer() {
+        this.id = UUID.randomUUID().toString();
+        // default
     }
 
     public void addWorkout(Workout workout, int daysPerWeek) {
