@@ -15,19 +15,10 @@ public class Customer {
     @GeneratedValue
     private final String id;
 
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "height")
     private double height;
-
-    @OneToOne
     private Weight weight;
-
-    @Column(name = "bfp")
     private int bodyFatPercentage;
-
-    @Column(name = "availability")
     private int daysAvailablePerWeek;
 
     private HashMap<Workout, Integer> workouts = new HashMap<>();
@@ -57,6 +48,10 @@ public class Customer {
     public Customer() {
         this.id = UUID.randomUUID().toString();
         // default
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public void addWorkout(Workout workout, int daysPerWeek) {

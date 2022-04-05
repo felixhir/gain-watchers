@@ -12,8 +12,10 @@
     <artifactId>3-domain-layer</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
+            <groupId>com.example</groupId>
+            <artifactId>4-abstraction-layer</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
