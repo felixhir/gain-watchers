@@ -11,16 +11,18 @@ import java.util.UUID;
 public class Customer {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue
-    private final String id;
+    private String id;
 
     private String name;
     private double height;
+
+    @SuppressWarnings("JpaAttributeTypeInspection")
     private Weight weight;
     private int bodyFatPercentage;
     private int daysAvailablePerWeek;
 
+    @SuppressWarnings("JpaAttributeTypeInspection")
     private HashMap<Workout, Integer> workouts = new HashMap<>();
 
     public Customer(String name, double height, Weight weight, int bodyFatPercentage, int daysAvailablePerWeek) {
@@ -46,7 +48,6 @@ public class Customer {
     }
 
     public Customer() {
-        this.id = UUID.randomUUID().toString();
         // default
     }
 

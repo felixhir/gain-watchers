@@ -1,13 +1,19 @@
 package dhbw.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Collections;
 import java.util.LinkedList;
 
+@Entity
 public class Exercise {
 
-    private final String name;
-    private final ExerciseType type;
-    private final LinkedList<ExerciseVariant> variants;
+    @Id
+    private String name;
+    private ExerciseType type;
+
+    @SuppressWarnings("JpaAttributeTypeInspection")
+    private LinkedList<ExerciseVariant> variants;
 
     public Exercise(String name, ExerciseType type, ExerciseVariant[] variants) {
         if(name.isEmpty()) {
@@ -20,5 +26,9 @@ public class Exercise {
         this.type = type;
         this.variants = new LinkedList<>();
         Collections.addAll(this.variants, variants);
+    }
+
+    public Exercise() {
+        // default
     }
 }

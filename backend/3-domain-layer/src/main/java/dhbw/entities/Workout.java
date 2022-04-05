@@ -1,12 +1,18 @@
 package dhbw.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Collections;
 import java.util.LinkedList;
 
+@Entity
 public class Workout {
 
+    @Id
     private String name;
-    private final String description;
+    private String description;
+
+    @SuppressWarnings("JpaAttributeTypeInspection")
     private LinkedList<WorkoutExercise> exercises;
 
     public Workout(String name, String description, WorkoutExercise[] exercises) {
@@ -19,6 +25,10 @@ public class Workout {
         this.name = name;
         this.description = description;
         Collections.addAll(this.exercises, exercises);
+    }
+
+    public Workout() {
+        //default
     }
 
     public void addExercise(WorkoutExercise exercise) {
