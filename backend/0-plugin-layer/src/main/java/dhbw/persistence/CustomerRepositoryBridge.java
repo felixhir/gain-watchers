@@ -18,7 +18,7 @@ public class CustomerRepositoryBridge implements CustomerRepository {
     }
 
     @Override
-    public void create(Customer newCustomer) {
+    public void save(Customer newCustomer) {
         springDataCustomerRepository.save(newCustomer);
     }
 

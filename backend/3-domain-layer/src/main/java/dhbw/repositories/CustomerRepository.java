@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CustomerRepository {
 
-    void create(Customer newCustomer);
+    void save(Customer newCustomer);
 
     List<Customer> findAll();
 

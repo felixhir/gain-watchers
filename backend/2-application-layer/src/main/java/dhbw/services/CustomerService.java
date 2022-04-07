@@ -18,7 +18,7 @@ public class CustomerService {
     }
 
     public void create(Customer customer) {
-        customerRepository.create(customer);
+        customerRepository.save(customer);
     }
 
     public List<Customer> getAll() {
