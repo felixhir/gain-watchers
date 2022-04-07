@@ -22,7 +22,7 @@ public class CustomerService {
     }
 
     public List<Customer> getAll() {
-        return customerRepository.getAll();
+        return customerRepository.findAll();
     }
 
     public Customer getById(String uuid) {

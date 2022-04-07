@@ -8,7 +8,7 @@ public interface CustomerRepository {
 
     void create(Customer newCustomer);
 
-    List<Customer> getAll();
+    List<Customer> findAll();
 
     Customer getById(String uuid);
 }

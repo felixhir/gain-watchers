@@ -16,13 +16,11 @@ public class Customer {
 
     private String name;
     private double height;
-
-    @SuppressWarnings("JpaAttributeTypeInspection")
+    @Transient
     private Weight weight;
     private int bodyFatPercentage;
     private int daysAvailablePerWeek;
-
-    @SuppressWarnings("JpaAttributeTypeInspection")
+    @Transient
     private HashMap<Workout, Integer> workouts = new HashMap<>();
 
     public Customer(String name, double height, Weight weight, int bodyFatPercentage, int daysAvailablePerWeek) {
