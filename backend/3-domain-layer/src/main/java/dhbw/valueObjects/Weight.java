@@ -19,6 +19,14 @@ public final class Weight {
         return weight >= 0;
     }
 
+    public float getWeight() {
+        return weight;
+    }
+
+    public boolean usesMetricSystem() {
+        return useMetricSystem;
+    }
+
     public Weight increaseWeight(float inc) {
         return new Weight(this.weight + inc, this.useMetricSystem);
     }

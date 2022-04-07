@@ -18,7 +18,7 @@ public class GainWatchersApplication {
     @Bean
     public CommandLineRunner demo(CustomerRepository customerRepository) {
         return (args -> {
-            customerRepository.save(new Customer("Max Mustermann", 1.80, new Weight(80, false), 15, 5));
+            customerRepository.save(new Customer("Max Mustermann", 180, new Weight(80, false), 15, 5));
         });
     }
 }

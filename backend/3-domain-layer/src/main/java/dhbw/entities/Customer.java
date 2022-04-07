@@ -4,18 +4,17 @@ import dhbw.valueObjects.Weight;
 
 import javax.persistence.*;
 import java.util.HashMap;
-import java.util.UUID;
 
 @Entity
 @Table(name = "customer")
 public class Customer {
 
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String name;
-    private double height;
+    private int height;
     @Transient
     private Weight weight;
     private int bodyFatPercentage;
@@ -23,7 +22,7 @@ public class Customer {
     @Transient
     private HashMap<Workout, Integer> workouts = new HashMap<>();
 
-    public Customer(String name, double height, Weight weight, int bodyFatPercentage, int daysAvailablePerWeek) {
+    public Customer(String name, int height, Weight weight, int bodyFatPercentage, int daysAvailablePerWeek) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("Every customer must have a name");
         }
@@ -42,15 +41,38 @@ public class Customer {
         this.weight = weight;
         this.bodyFatPercentage = bodyFatPercentage;
         this.daysAvailablePerWeek = daysAvailablePerWeek;
-        this.id = UUID.randomUUID().toString();
     }
 
     public Customer() {
         // default
     }
 
-    public String getId() {
+    public Long getId() {
         return this.id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Weight getWeight() {
+        return weight;
+    }
+
+    public int getBodyFatPercentage() {
+        return bodyFatPercentage;
+    }
+
+    public int getDaysAvailablePerWeek() {
+        return daysAvailablePerWeek;
+    }
+
+    public HashMap<Workout, Integer> getWorkouts() {
+        return workouts;
     }
 
     public void addWorkout(Workout workout, int daysPerWeek) {
