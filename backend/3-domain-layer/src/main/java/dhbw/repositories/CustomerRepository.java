@@ -10,5 +10,5 @@ public interface CustomerRepository {
 
     List<Customer> findAll();
 
-    Customer getById(String uuid);
+    Customer getById(Long uuid);
 }

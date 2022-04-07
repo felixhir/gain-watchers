@@ -25,7 +25,7 @@ public class customerApplicationService {
         return customerRepository.findAll();
     }
 
-    public Customer getById(String uuid) {
+    public Customer getById(Long uuid) {
         return customerRepository.getById(uuid);
     }
 }
