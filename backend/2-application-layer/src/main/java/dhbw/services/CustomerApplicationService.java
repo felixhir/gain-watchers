@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class customerApplicationService {
+public class CustomerApplicationService {
 
     private CustomerRepository customerRepository;
 
     @Autowired
-    public customerApplicationService(CustomerRepository customerRepository) {
+    public CustomerApplicationService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 

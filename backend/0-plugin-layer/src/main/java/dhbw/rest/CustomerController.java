@@ -1,7 +1,7 @@
 package dhbw.rest;
 
 import dhbw.entities.Customer;
-import dhbw.services.customerApplicationService;
+import dhbw.services.CustomerApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +14,10 @@ import java.util.List;
 @RequestMapping(path = "api/customers")
 public class CustomerController {
 
-    private customerApplicationService customerApplicationService;
+    private CustomerApplicationService customerApplicationService;
 
     @Autowired
-    public CustomerController(customerApplicationService customerApplicationService) {
+    public CustomerController(CustomerApplicationService customerApplicationService) {
         this.customerApplicationService = customerApplicationService;
     }
 

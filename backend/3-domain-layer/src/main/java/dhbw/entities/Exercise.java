@@ -2,8 +2,10 @@ package dhbw.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Collections;
+import javax.persistence.Transient;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Exercise {
@@ -12,20 +14,20 @@ public class Exercise {
     private String name;
     private ExerciseType type;
 
-    @SuppressWarnings("JpaAttributeTypeInspection")
+    @Transient
     private LinkedList<ExerciseVariant> variants;
 
-    public Exercise(String name, ExerciseType type, ExerciseVariant[] variants) {
+    public Exercise(String name, ExerciseType type, List<ExerciseVariant> variants) {
         if(name.isEmpty()) {
             throw new IllegalArgumentException("Every exercise has to have a name");
         }
-        if(variants.length <= 0) {
+        if(variants.isEmpty()) {
             throw new IllegalArgumentException("An exercise has to contain at least 1 variant");
         }
         this.name = name;
         this.type = type;
         this.variants = new LinkedList<>();
-        Collections.addAll(this.variants, variants);
+        this.variants.addAll(variants.stream().distinct().collect(Collectors.toList()));
     }
 
     public Exercise() {
