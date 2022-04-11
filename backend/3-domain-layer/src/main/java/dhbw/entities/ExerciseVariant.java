@@ -6,5 +6,5 @@ public enum ExerciseVariant {
     CABLE,
     BARBELL,
     DUMBBELL,
-    MACHINE
+    BODY_WEIGHT, MACHINE
 }

@@ -10,8 +10,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class GainWatchersApplication {
@@ -29,15 +31,15 @@ public class GainWatchersApplication {
             customerRepository.save(new Customer("Maxime Musterfrau", 175, new Weight(170, false), 20, 3));
             customerRepository.save(new Customer("Maggus Rühl", 180, new Weight(125, true), 25, 7));
 
-            LinkedList variants = new LinkedList();
-            variants.add(ExerciseVariant.BARBELL);
-            variants.add(ExerciseVariant.DUMBBELL);
-            Exercise benchPress = new Exercise("Bankdrücken", ExerciseType.FREE_WEIGHT, variants);
-            exerciseRepository.save(benchPress);
+            exerciseRepository.save(new Exercise("Bankdrücken", ExerciseType.FREE_WEIGHT, Arrays.asList(ExerciseVariant.BARBELL, ExerciseVariant.DUMBBELL)));
+            exerciseRepository.save(new Exercise("Laufen", ExerciseType.CARDIO, Arrays.asList(ExerciseVariant.MACHINE)));
+            exerciseRepository.save(new Exercise("Hüftöffner", ExerciseType.MOBILITY, Arrays.asList(ExerciseVariant.BODY_WEIGHT)));
 
-            List<WorkoutExercise> exercises = new LinkedList<>();
-            exercises.add(new WorkoutExercise(benchPress, 5, 5));
-            workoutRepository.save(new Workout("Brust 5x5", "", exercises));
+            List<WorkoutExercise> exercises = exerciseRepository.findAll()
+                    .stream()
+                    .map(exercise -> new WorkoutExercise(exercise, 5, 5))
+                    .collect(Collectors.toList());
+            workoutRepository.save(new Workout("5x5 Basic", "", exercises));
         });
     }
 }
