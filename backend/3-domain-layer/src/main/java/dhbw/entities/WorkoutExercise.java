@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class WorkoutExercise {
 
-    private final Exercise exercise;
+    private Exercise exercise;
     private int sets;
     private int reps;
 

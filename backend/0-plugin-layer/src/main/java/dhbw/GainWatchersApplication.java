@@ -10,8 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +29,9 @@ public class GainWatchersApplication {
             customerRepository.save(new Customer("Maxime Musterfrau", 175, new Weight(170, false), 20, 3));
             customerRepository.save(new Customer("Maggus Rühl", 180, new Weight(125, true), 25, 7));
 
-            exerciseRepository.save(new Exercise("Bankdrücken", ExerciseType.FREE_WEIGHT, Arrays.asList(ExerciseVariant.BARBELL, ExerciseVariant.DUMBBELL)));
-            exerciseRepository.save(new Exercise("Laufen", ExerciseType.CARDIO, Arrays.asList(ExerciseVariant.MACHINE)));
-            exerciseRepository.save(new Exercise("Hüftöffner", ExerciseType.MOBILITY, Arrays.asList(ExerciseVariant.BODY_WEIGHT)));
+            exerciseRepository.save(new Exercise("Bankdrücken", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
+            exerciseRepository.save(new Exercise("Laufen", ExerciseType.CARDIO, ExerciseVariant.MACHINE));
+            exerciseRepository.save(new Exercise("Hüftöffner", ExerciseType.MOBILITY, ExerciseVariant.BODY_WEIGHT));
 
             List<WorkoutExercise> exercises = exerciseRepository.findAll()
                     .stream()

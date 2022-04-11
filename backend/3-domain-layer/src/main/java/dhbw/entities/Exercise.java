@@ -13,21 +13,15 @@ public class Exercise {
     @Id
     private String name;
     private ExerciseType type;
+    private ExerciseVariant variant;
 
-    @Transient
-    private LinkedList<ExerciseVariant> variants;
-
-    public Exercise(String name, ExerciseType type, List<ExerciseVariant> variants) {
+    public Exercise(String name, ExerciseType type, ExerciseVariant variant) {
         if(name.isEmpty()) {
             throw new IllegalArgumentException("Every exercise has to have a name");
         }
-        if(variants.isEmpty()) {
-            throw new IllegalArgumentException("An exercise has to contain at least 1 variant");
-        }
         this.name = name;
         this.type = type;
-        this.variants = new LinkedList<>();
-        this.variants.addAll(variants.stream().distinct().collect(Collectors.toList()));
+        this.variant = variant;
     }
 
     public Exercise() {
@@ -42,7 +36,7 @@ public class Exercise {
         return type;
     }
 
-    public LinkedList<ExerciseVariant> getVariants() {
-        return variants;
+    public ExerciseVariant getVariant() {
+        return variant;
     }
 }

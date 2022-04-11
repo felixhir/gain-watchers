@@ -3,7 +3,6 @@ package dhbw.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class Workout {
     private String description;
 
     @Transient
-    private LinkedList<WorkoutExercise> exercises;
+    private List<WorkoutExercise> exercises;
 
     public Workout(String name, String description, List<WorkoutExercise> exercises) {
         if(name.isEmpty()) {
@@ -38,7 +37,7 @@ public class Workout {
         return description;
     }
 
-    public LinkedList<WorkoutExercise> getExercises() {
+    public List<WorkoutExercise> getExercises() {
         return exercises;
     }
 
