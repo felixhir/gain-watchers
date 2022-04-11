@@ -33,4 +33,16 @@ public class Exercise {
     public Exercise() {
         // default
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public ExerciseType getType() {
+        return type;
+    }
+
+    public LinkedList<ExerciseVariant> getVariants() {
+        return variants;
+    }
 }
