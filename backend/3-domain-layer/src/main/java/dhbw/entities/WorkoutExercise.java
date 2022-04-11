@@ -20,6 +20,14 @@ public class WorkoutExercise {
         this.reps = reps;
     }
 
+    public int getSets() {
+        return sets;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
     public Exercise getExercise() {
         return exercise;
     }

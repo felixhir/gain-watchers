@@ -2,8 +2,10 @@ package dhbw.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Workout {
@@ -12,19 +14,32 @@ public class Workout {
     private String name;
     private String description;
 
-    @SuppressWarnings("JpaAttributeTypeInspection")
+    @Transient
     private LinkedList<WorkoutExercise> exercises;
 
-    public Workout(String name, String description, WorkoutExercise[] exercises) {
+    public Workout(String name, String description, List<WorkoutExercise> exercises) {
         if(name.isEmpty()) {
             throw new IllegalArgumentException("Every workout must have a name");
         }
-        if(exercises.length == 0) {
+        if(exercises.isEmpty()) {
             throw new IllegalArgumentException("A workout must contain at least 1 exercise");
         }
         this.name = name;
         this.description = description;
-        Collections.addAll(this.exercises, exercises);
+        this.exercises = new LinkedList<>();
+        this.exercises.addAll(exercises);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LinkedList<WorkoutExercise> getExercises() {
+        return exercises;
     }
 
     public Workout() {

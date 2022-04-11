@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface WorkoutRepository {
 
-    List<Workout> getAll();
+    List<Workout> findAll();
 
-    void create(Workout newWorkout);
+    Workout save(Workout newWorkout);
 
     Workout getByName(String name);
 }
