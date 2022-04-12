@@ -25,9 +25,9 @@ public class GainWatchersApplication {
                                   ExerciseRepository exerciseRepository,
                                   WorkoutRepository workoutRepository) {
         return (args -> {
-            customerRepository.save(new Customer("Max Mustermann", 180, new Weight(175, false), 15, 5));
-            customerRepository.save(new Customer("Maxime Musterfrau", 175, new Weight(170, false), 20, 3));
-            customerRepository.save(new Customer("Maggus Rühl", 180, new Weight(125, true), 25, 7));
+            customerRepository.save(new Customer("Max Mustermann", 180, 80, 15, 5));
+            customerRepository.save(new Customer("Maxime Musterfrau", 175, 65.5, 20, 3));
+            customerRepository.save(new Customer("Maggus Rühl", 180, 125, 25, 7));
 
             exerciseRepository.save(new Exercise("Bankdrücken", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
             exerciseRepository.save(new Exercise("Laufen", ExerciseType.CARDIO, ExerciseVariant.MACHINE));

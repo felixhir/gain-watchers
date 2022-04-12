@@ -15,14 +15,15 @@ public class Customer {
 
     private String name;
     private int height;
-    @Transient
-    private Weight weight;
+    //@Transient
+    //private Weight weight;
+    private double weight;
     private int bodyFatPercentage;
     private int daysAvailablePerWeek;
     @Transient
     private HashMap<Workout, Integer> workouts = new HashMap<>();
 
-    public Customer(String name, int height, Weight weight, int bodyFatPercentage, int daysAvailablePerWeek) {
+    public Customer(String name, int height, double weight, int bodyFatPercentage, int daysAvailablePerWeek) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("Every customer must have a name");
         }
@@ -59,7 +60,7 @@ public class Customer {
         return height;
     }
 
-    public Weight getWeight() {
+    public double getWeight() {
         return weight;
     }
 

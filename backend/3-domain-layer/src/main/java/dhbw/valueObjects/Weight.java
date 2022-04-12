@@ -19,7 +19,7 @@ public final class Weight {
         return weight >= 0;
     }
 
-    public float getWeight() {
+    public float getValue() {
         return weight;
     }
 
