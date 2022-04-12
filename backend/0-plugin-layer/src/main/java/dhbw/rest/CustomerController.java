@@ -5,10 +5,9 @@ import dhbw.mapper.CustomerResourceMapper;
 import dhbw.resources.CustomerResource;
 import dhbw.services.CustomerApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,15 +25,22 @@ public class CustomerController {
         this.customerResourceMapper = customerResourceMapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public List<CustomerResource> getCustomers() {
         return this.customerApplicationService.getAll().stream()
                 .map(customerResourceMapper)
                 .collect(Collectors.toList());
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @GetMapping(path = "/{id}")
     public Customer getCustomer(@PathVariable Long id) {
         return this.customerApplicationService.getById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<CustomerResource> postCustomer(@RequestBody Customer newCustomer) {
+        Customer customer = this.customerApplicationService.save(newCustomer);
+        System.out.println(customer);
+        return new ResponseEntity(customer, HttpStatus.CREATED);
     }
 }
