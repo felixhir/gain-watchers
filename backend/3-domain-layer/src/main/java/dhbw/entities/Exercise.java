@@ -1,18 +1,21 @@
 package dhbw.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import dhbw.helper.ExerciseKey;
+
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
+@IdClass(ExerciseKey.class)
 public class Exercise {
 
     @Id
     private String name;
+    @Id
     private ExerciseType type;
+    @Id
     private ExerciseVariant variant;
 
     public Exercise(String name, ExerciseType type, ExerciseVariant variant) {
