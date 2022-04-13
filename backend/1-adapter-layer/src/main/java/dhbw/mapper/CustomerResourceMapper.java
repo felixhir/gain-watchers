@@ -2,7 +2,6 @@ package dhbw.mapper;
 
 import dhbw.entities.Customer;
 import dhbw.resources.CustomerResource;
-import dhbw.valueObjects.Weight;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -16,8 +15,6 @@ public class CustomerResourceMapper implements Function<Customer, CustomerResour
     }
 
     private CustomerResource map(Customer customer) {
-        //Weight weight = customer.getWeight();
-        //double weightInKgs = weight.usesMetricSystem() ? weight.getValue() : weight.getValue() * 0.45;
-        return new CustomerResource(customer.getName(), customer.getDaysAvailablePerWeek(), customer.getWeight(), customer.getHeight() / 100);
+        return new CustomerResource(customer.getName(), customer.getDaysAvailablePerWeek(), customer.getWeight(), customer.getHeight());
     }
 }

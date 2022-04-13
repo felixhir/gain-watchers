@@ -6,6 +6,7 @@ import dhbw.resources.CustomerResource;
 import dhbw.services.CustomerApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,10 +38,9 @@ public class CustomerController {
         return this.customerApplicationService.getById(id);
     }
 
-    @PostMapping
-    public ResponseEntity<CustomerResource> postCustomer(@RequestBody Customer newCustomer) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> postCustomer(@RequestBody Customer newCustomer) {
         Customer customer = this.customerApplicationService.save(newCustomer);
-        System.out.println(customer);
         return new ResponseEntity(customer, HttpStatus.CREATED);
     }
 }

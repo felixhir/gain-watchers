@@ -5,9 +5,9 @@ public class CustomerResource {
     private String name;
     private int availability;
     private double weight;
-    private float height;
+    private int height;
 
-    public CustomerResource(String name, int availability, double weight, float height) {
+    public CustomerResource(String name, int availability, double weight, int height) {
         this.name = name;
         this.availability = availability;
         this.weight = weight;

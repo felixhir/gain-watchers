@@ -1,9 +1,6 @@
 package dhbw.entities;
 
-import dhbw.valueObjects.Weight;
-
 import javax.persistence.*;
-import java.util.HashMap;
 
 @Entity
 @Table(name = "customer")
@@ -15,13 +12,9 @@ public class Customer {
 
     private String name;
     private int height;
-    //@Transient
-    //private Weight weight;
     private double weight;
     private int bodyFatPercentage;
     private int daysAvailablePerWeek;
-    @Transient
-    private HashMap<Workout, Integer> workouts = new HashMap<>();
 
     public Customer(String name, int height, double weight, int bodyFatPercentage, int daysAvailablePerWeek) {
         if (name.isEmpty()) {
@@ -70,28 +63,6 @@ public class Customer {
 
     public int getDaysAvailablePerWeek() {
         return daysAvailablePerWeek;
-    }
-
-    public HashMap<Workout, Integer> getWorkouts() {
-        return workouts;
-    }
-
-    public void addWorkout(Workout workout, int daysPerWeek) {
-        if (daysPerWeek > this.availableDays()) {
-            throw new IllegalArgumentException("The amount done of a workout must not exceed the weekly limit");
-        }
-        if (workouts.containsKey(workout)) {
-            throw new IllegalArgumentException("This workout has already been added and updating the amount is no feature of the current version");
-        }
-        workouts.put(workout, daysPerWeek);
-    }
-
-    private int availableDays() {
-        int total = this.daysAvailablePerWeek;
-        for(int days: workouts.values()) {
-            total -= days;
-        }
-        return total;
     }
 
 }
