@@ -2,12 +2,14 @@ package dhbw.resources;
 
 public class CustomerResource {
 
+    private Long id;
     private String name;
     private int availability;
     private double weight;
     private int height;
 
-    public CustomerResource(String name, int availability, double weight, int height) {
+    public CustomerResource(Long id, String name, int availability, double weight, int height) {
+        this.id = id;
         this.name = name;
         this.availability = availability;
         this.weight = weight;
@@ -28,5 +30,9 @@ public class CustomerResource {
 
     public float getHeight() {
         return height;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

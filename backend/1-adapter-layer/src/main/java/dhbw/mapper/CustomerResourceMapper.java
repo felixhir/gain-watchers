@@ -15,6 +15,6 @@ public class CustomerResourceMapper implements Function<Customer, CustomerResour
     }
 
     private CustomerResource map(Customer customer) {
-        return new CustomerResource(customer.getName(), customer.getDaysAvailablePerWeek(), customer.getWeight(), customer.getHeight());
+        return new CustomerResource(customer.getId(), customer.getName(), customer.getDaysAvailablePerWeek(), customer.getWeight(), customer.getHeight());
     }
 }
