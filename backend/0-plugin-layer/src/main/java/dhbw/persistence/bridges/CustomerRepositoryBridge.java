@@ -1,6 +1,7 @@
-package dhbw.persistence;
+package dhbw.persistence.bridges;
 
 import dhbw.entities.Customer;
+import dhbw.persistence.repositories.SpringDataCustomerRepository;
 import dhbw.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package dhbw.persistence;
+package dhbw.persistence.repositories;
 
 import dhbw.entities.Exercise;
 import org.springframework.data.jpa.repository.JpaRepository;

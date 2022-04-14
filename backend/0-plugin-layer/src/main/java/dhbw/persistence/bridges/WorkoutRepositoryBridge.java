@@ -1,6 +1,7 @@
-package dhbw.persistence;
+package dhbw.persistence.bridges;
 
 import dhbw.entities.Workout;
+import dhbw.persistence.repositories.SpringDataWorkoutRepository;
 import dhbw.repositories.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
