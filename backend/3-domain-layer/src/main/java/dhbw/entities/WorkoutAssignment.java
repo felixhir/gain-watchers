@@ -10,7 +10,7 @@ public class WorkoutAssignment {
     private Long id;
     @OneToOne
     private Customer customer;
-    @ManyToOne
+    @OneToOne
     private Workout workout;
     private int amount;
 
@@ -22,5 +22,21 @@ public class WorkoutAssignment {
 
     public WorkoutAssignment() {
         // default constructor
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Workout getWorkout() {
+        return workout;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }
