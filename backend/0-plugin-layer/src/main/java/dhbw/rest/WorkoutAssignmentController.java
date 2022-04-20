@@ -50,6 +50,6 @@ public class WorkoutAssignmentController {
         Customer customer = customerApplicationService.getById(newAssignment.getCustomerId());
         Workout workout = workoutApplicationService.getByName(newAssignment.getWorkoutName());
         WorkoutAssignment assignment = workoutAssignmentApplicationService.save(new WorkoutAssignment(customer, workout, newAssignment.getAmount()));
-        return new ResponseEntity<>(assignment, HttpStatus.CREATED);
+        return new ResponseEntity<>(workoutAssignmentResourceMapper.apply(assignment), HttpStatus.CREATED);
     }
 }
