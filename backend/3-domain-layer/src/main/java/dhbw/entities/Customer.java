@@ -1,6 +1,8 @@
 package dhbw.entities;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class Customer {
@@ -14,6 +16,9 @@ public class Customer {
     private double weight;
     private int bodyFatPercentage;
     private int daysAvailablePerWeek;
+
+    @ElementCollection
+    private Map<Workout, Integer> workouts;
 
     public Customer(String name, int height, double weight, int bodyFatPercentage, int daysAvailablePerWeek) {
         if (name.isEmpty()) {
@@ -34,6 +39,7 @@ public class Customer {
         this.weight = weight;
         this.bodyFatPercentage = bodyFatPercentage;
         this.daysAvailablePerWeek = daysAvailablePerWeek;
+        this.workouts = new HashMap<>();
     }
 
     public Customer() {
@@ -64,4 +70,21 @@ public class Customer {
         return daysAvailablePerWeek;
     }
 
+    public void addWorkout(Workout workout, int daysPerWeek) {
+        if (daysPerWeek > this.availableDays()) {
+            throw new IllegalArgumentException("The amount done of a workout must not exceed the weekly limit");
+        }
+        if (workouts.containsKey(workout)) {
+            throw new IllegalArgumentException("This workout has already been added and updating the amount is no feature of the current version");
+        }
+        workouts.put(workout, daysPerWeek);
+    }
+
+    private int availableDays() {
+        int total = this.daysAvailablePerWeek;
+        for (int days : workouts.values()) {
+            total -= days;
+        }
+        return total;
+    }
 }
