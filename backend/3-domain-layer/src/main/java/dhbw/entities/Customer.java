@@ -70,6 +70,10 @@ public class Customer {
         return daysAvailablePerWeek;
     }
 
+    public Map<Workout, Integer> getWorkouts() {
+        return workouts;
+    }
+
     public void addWorkout(Workout workout, int daysPerWeek) {
         if (daysPerWeek > this.availableDays()) {
             throw new IllegalArgumentException("The amount done of a workout must not exceed the weekly limit");

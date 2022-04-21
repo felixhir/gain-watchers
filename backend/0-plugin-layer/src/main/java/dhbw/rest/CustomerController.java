@@ -1,9 +1,11 @@
 package dhbw.rest;
 
 import dhbw.entities.Customer;
+import dhbw.entities.Workout;
 import dhbw.mapper.CustomerResourceMapper;
 import dhbw.resources.CustomerResource;
 import dhbw.services.CustomerApplicationService;
+import dhbw.services.WorkoutApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,11 +21,13 @@ public class CustomerController {
 
     private CustomerApplicationService customerApplicationService;
     private CustomerResourceMapper customerResourceMapper;
+    private WorkoutApplicationService workoutApplicationService;
 
     @Autowired
-    public CustomerController(CustomerApplicationService customerApplicationService, CustomerResourceMapper customerResourceMapper) {
+    public CustomerController(CustomerApplicationService customerApplicationService, CustomerResourceMapper customerResourceMapper, WorkoutApplicationService workoutApplicationService) {
         this.customerApplicationService = customerApplicationService;
         this.customerResourceMapper = customerResourceMapper;
+        this.workoutApplicationService = workoutApplicationService;
     }
 
     @GetMapping
@@ -42,5 +46,14 @@ public class CustomerController {
     public ResponseEntity<?> postCustomer(@RequestBody Customer newCustomer) {
         Customer customer = this.customerApplicationService.save(newCustomer);
         return new ResponseEntity(customer, HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/{customerId}")
+    public ResponseEntity<?> assignWorkout(@PathVariable Long customerId, @RequestParam String workoutName, @RequestParam int amount) {
+        Customer customer = this.customerApplicationService.getById(customerId);
+        Workout workout = this.workoutApplicationService.getByName(workoutName);
+        customer.addWorkout(workout, amount);
+        this.customerApplicationService.save(customer);
+        return new ResponseEntity<>(customerResourceMapper.apply(customer), HttpStatus.OK);
     }
 }
