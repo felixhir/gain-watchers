@@ -12,17 +12,12 @@ const createWindow = () => {
   
     win.removeMenu();
     win.loadFile('./src/index.html');
-
-    win.webContents.once('dom-ready', () => {
-      dialog.showMessageBox({"message": "Test", "title": "Also Test"});
-    });
+    //win.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {
     createWindow();
 });
-
-
 
 try {
   require('electron-reloader')(module)
