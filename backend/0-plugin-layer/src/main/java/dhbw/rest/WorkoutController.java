@@ -37,4 +37,11 @@ public class WorkoutController {
         Workout workout = workoutApplicationService.save(newWorkout);
         return new ResponseEntity<>(workout, HttpStatus.CREATED);
     }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<?> updateWorkout(@PathVariable String id, @RequestBody Workout newWorkout) {
+        Workout oldWorkout = this.workoutApplicationService.getByName(id);
+        Workout workout = this.workoutApplicationService.replaceWith(oldWorkout, newWorkout);
+        return new ResponseEntity<>(workout, HttpStatus.OK);
+    }
 }

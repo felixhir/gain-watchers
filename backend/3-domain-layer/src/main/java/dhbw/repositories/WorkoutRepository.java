@@ -11,4 +11,6 @@ public interface WorkoutRepository {
     Workout save(Workout newWorkout);
 
     Workout getByName(String name);
+
+    Workout replaceWith(Workout oldWorkout, Workout newWorkout);
 }

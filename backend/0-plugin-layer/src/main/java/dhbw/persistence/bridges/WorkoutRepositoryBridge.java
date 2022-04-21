@@ -32,4 +32,10 @@ public class WorkoutRepositoryBridge implements WorkoutRepository {
     public Workout getByName(String name) {
         return springDataWorkoutRepository.getById(name);
     }
+
+    @Override
+    public Workout replaceWith(Workout oldWorkout, Workout newWorkout) {
+        springDataWorkoutRepository.delete(oldWorkout);
+        return springDataWorkoutRepository.save(newWorkout);
+    }
 }

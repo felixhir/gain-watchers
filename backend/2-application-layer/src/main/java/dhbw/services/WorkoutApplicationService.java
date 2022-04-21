@@ -28,4 +28,8 @@ public class WorkoutApplicationService {
     public Workout save(Workout workout) {
         return workoutRepository.save(workout);
     }
+
+    public Workout replaceWith(Workout oldWorkout, Workout newWorkout) {
+        return workoutRepository.replaceWith(oldWorkout, newWorkout);
+    }
 }
