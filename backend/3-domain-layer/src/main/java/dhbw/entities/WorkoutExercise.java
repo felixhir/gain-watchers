@@ -1,9 +1,15 @@
 package dhbw.entities;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class WorkoutExercise {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @OneToOne
     private Exercise exercise;
     private int sets;
     private int reps;
@@ -18,6 +24,10 @@ public class WorkoutExercise {
         this.exercise = exercise;
         this.sets = sets;
         this.reps = reps;
+    }
+
+    public WorkoutExercise() {
+        // default
     }
 
     public int getSets() {

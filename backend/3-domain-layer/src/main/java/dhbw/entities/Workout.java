@@ -1,8 +1,6 @@
 package dhbw.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class Workout {
     private String name;
     private String description;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL)
     private List<WorkoutExercise> exercises;
 
     public Workout(String name, String description, List<WorkoutExercise> exercises) {

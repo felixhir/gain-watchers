@@ -38,7 +38,7 @@ public class ExerciseController {
     @PostMapping
     public ResponseEntity<?> createExercise(@RequestBody Exercise newExercise) {
         Exercise exercise = exerciseApplicationService.save(newExercise);
-        return new ResponseEntity<>(exercise, HttpStatus.CREATED);
+        return new ResponseEntity<>(exerciseResourceMapper.apply(exercise), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/types")
