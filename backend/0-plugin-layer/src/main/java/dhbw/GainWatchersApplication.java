@@ -3,9 +3,7 @@ package dhbw;
 import dhbw.entities.*;
 import dhbw.repositories.CustomerRepository;
 import dhbw.repositories.ExerciseRepository;
-import dhbw.repositories.WorkoutAssignmentRepository;
 import dhbw.repositories.WorkoutRepository;
-import dhbw.valueObjects.Weight;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,8 +22,7 @@ public class GainWatchersApplication {
     @Bean
     public CommandLineRunner demo(CustomerRepository customerRepository,
                                   ExerciseRepository exerciseRepository,
-                                  WorkoutRepository workoutRepository,
-                                  WorkoutAssignmentRepository workoutAssignmentRepository) {
+                                  WorkoutRepository workoutRepository) {
         return (args -> {
             Customer customer = new Customer("Max Mustermann", 180, 80, 15, 5);
             customerRepository.save(customer);
@@ -42,8 +39,6 @@ public class GainWatchersApplication {
                     .collect(Collectors.toList());
             Workout workout = new Workout("5x5 Basic", "", exercises);
             workoutRepository.save(workout);
-
-            workoutAssignmentRepository.save(new WorkoutAssignment(customer, workout, 2));
         });
     }
 }
