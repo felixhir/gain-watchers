@@ -1,0 +1,22 @@
+h1 {
+    font-family: sans-serif;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: rgb(219, 248, 255);
+}
+
+table, th {
+    border: 1px solid black;
+}
+
+#customer-wrapper, #exercise-wrapper, #workout-wrapper {
+    width: auto;
+    float: left;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#customer-div, #exercise-div, #workout-div {
+}
