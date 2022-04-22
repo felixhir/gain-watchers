@@ -2,18 +2,24 @@ h1 {
     font-family: sans-serif;
 }
 
+h2 {
+    text-align: center;
+}
+
 body {
     font-family: sans-serif;
-    background-color: rgb(219, 248, 255);
+    background-color: rgb(247, 253, 255);
 }
 
 ul {
     list-style-type: none;
     padding-left: 0;
+    border: 1px solid gray;
+    padding: 1em;
 }
 
-li {
-    padding-bottom: 5px;
+li:not(:last-child) {
+    padding-bottom: 1em;
 }
 
 #customer-wrapper, #exercise-wrapper, #workout-wrapper {
@@ -21,8 +27,23 @@ li {
     float: left;
     margin-left: 1em;
     margin-right: 1em;
-    text-align: center;
+    text-align: left;
+    border: 2px solid black;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
-#customer-div, #exercise-div, #workout-div {
+#form-div {
+    float: left;
+    margin-top: 1em;
+}
+
+#form-div input {
+    width: min-content;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

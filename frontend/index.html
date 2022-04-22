@@ -4,22 +4,38 @@
     <meta charset="UTF-8">
     <title>Gain Watchers</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <h1>Welcome to Gain Watchers 💪</h1>
-    <div id="customer-wrapper">
-      <h2>Customers</h2>
-      <div id="customer-div"></div>
+    <div id="data-div">
+      <div id="customer-wrapper">
+        <h2>Customers</h2>
+        <ul id="customer-ul"></ul>
+      </div>
+      
+      <div id="workout-wrapper">
+        <h2>Workouts</h2>
+        <ul id="workout-ul"></ul>
+      </div>
+  
+      <div id="exercise-wrapper">
+        <h2>Exercises</h2>
+        <ul id="exercise-ul"></ul>
+      </div>
     </div>
-    
-    <div id="workout-wrapper">
-      <h2>Workouts</h2>
-      <div id="workout-div"></div>
-    </div>
-
-    <div id="exercise-wrapper">
-      <h2>Exercises</h2>
-      <div id="exercise-div"></div>
+    <div id="form-div">
+      <form id="customer-form" onsubmit="postCustomer();return false" >
+        <fieldset>
+          <legend>Add Customer: </legend>
+          <input type="text" name="name" placeholder="Name" required><br>
+          <input type="number" name="height" placeholder="Height" required><br>
+          <input type="number" name="weight" placeholder="Weight" required><br>
+          <input type="number" name="bodyFatPercentage" placeholder="Body Fat Level" required><br>
+          <input type="number" name="daysAvailablePerWeek" placeholder="Availability per week" required><br><br>
+          <input type="submit" value="Add">
+        </fieldset>
+      </form>
     </div>
   <script src="script.js"></script>
   </body>
