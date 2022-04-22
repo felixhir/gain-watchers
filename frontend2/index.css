@@ -7,8 +7,13 @@ body {
     background-color: rgb(219, 248, 255);
 }
 
-table, th {
-    border: 1px solid black;
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    padding-bottom: 5px;
 }
 
 #customer-wrapper, #exercise-wrapper, #workout-wrapper {
@@ -16,6 +21,7 @@ table, th {
     float: left;
     margin-left: 1em;
     margin-right: 1em;
+    text-align: center;
 }
 
 #customer-div, #exercise-div, #workout-div {
