@@ -1,15 +1,12 @@
 package dhbw.resources;
 
-import dhbw.entities.ExerciseType;
-import dhbw.entities.ExerciseVariant;
-
 public class ExerciseResource {
 
     private String name;
-    private ExerciseType exerciseType;
-    private ExerciseVariant exerciseVariant;
+    private String exerciseType;
+    private String exerciseVariant;
 
-    public ExerciseResource(String name, ExerciseType exerciseType, ExerciseVariant exerciseVariant) {
+    public ExerciseResource(String name, String exerciseType, String exerciseVariant) {
         this.name = name;
         this.exerciseType = exerciseType;
         this.exerciseVariant = exerciseVariant;
@@ -19,11 +16,11 @@ public class ExerciseResource {
         return name;
     }
 
-    public ExerciseType getExerciseType() {
+    public String getExerciseType() {
         return exerciseType;
     }
 
-    public ExerciseVariant getExerciseVariant() {
+    public String getExerciseVariant() {
         return exerciseVariant;
     }
 

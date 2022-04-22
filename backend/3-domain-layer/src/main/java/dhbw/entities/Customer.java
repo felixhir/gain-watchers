@@ -1,8 +1,8 @@
 package dhbw.entities;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -17,8 +17,8 @@ public class Customer {
     private int bodyFatPercentage;
     private int daysAvailablePerWeek;
 
-    @ElementCollection
-    private Map<Workout, Integer> workouts;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Workout> workouts;
 
     public Customer(String name, int height, double weight, int bodyFatPercentage, int daysAvailablePerWeek) {
         if (name.isEmpty()) {
@@ -39,7 +39,7 @@ public class Customer {
         this.weight = weight;
         this.bodyFatPercentage = bodyFatPercentage;
         this.daysAvailablePerWeek = daysAvailablePerWeek;
-        this.workouts = new HashMap<>();
+        this.workouts = new LinkedList<>();
     }
 
     public Customer() {
@@ -70,24 +70,21 @@ public class Customer {
         return daysAvailablePerWeek;
     }
 
-    public Map<Workout, Integer> getWorkouts() {
+    public List<Workout> getWorkouts() {
         return workouts;
     }
 
-    public void addWorkout(Workout workout, int daysPerWeek) {
-        if (daysPerWeek > this.availableDays()) {
-            throw new IllegalArgumentException("The amount done of a workout must not exceed the weekly limit");
-        }
-        if (workouts.containsKey(workout)) {
+    public void addWorkout(Workout workout) {
+        if (workouts.contains(workout)) {
             throw new IllegalArgumentException("This workout has already been added and updating the amount is no feature of the current version");
         }
-        workouts.put(workout, daysPerWeek);
+        workouts.add(workout);
     }
 
     private int availableDays() {
         int total = this.daysAvailablePerWeek;
-        for (int days : workouts.values()) {
-            total -= days;
+        for(Workout workout: workouts) {
+            total -= workout.getDays();
         }
         return total;
     }

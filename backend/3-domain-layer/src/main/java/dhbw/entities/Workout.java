@@ -10,19 +10,24 @@ public class Workout {
     @Id
     private String name;
     private String description;
+    private int days;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<WorkoutExercise> exercises;
 
-    public Workout(String name, String description, List<WorkoutExercise> exercises) {
+    public Workout(String name, String description, int days, List<WorkoutExercise> exercises) {
         if(name.isEmpty()) {
             throw new IllegalArgumentException("Every workout must have a name");
         }
         if(exercises.isEmpty()) {
             throw new IllegalArgumentException("A workout must contain at least 1 exercise");
         }
+        if(days < 1) {
+            throw new IllegalArgumentException("A workout must be done at least once per wekk");
+        }
         this.name = name;
         this.description = description;
+        this.days = days;
         this.exercises = new LinkedList<>();
         this.exercises.addAll(exercises);
     }
@@ -37,6 +42,10 @@ public class Workout {
 
     public List<WorkoutExercise> getExercises() {
         return exercises;
+    }
+
+    public int getDays() {
+        return this.days;
     }
 
     public Workout() {

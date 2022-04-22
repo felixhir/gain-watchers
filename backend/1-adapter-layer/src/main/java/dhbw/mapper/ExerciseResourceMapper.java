@@ -15,6 +15,6 @@ public class ExerciseResourceMapper implements Function<Exercise, ExerciseResour
     }
 
     private ExerciseResource map(Exercise exercise) {
-        return new ExerciseResource(exercise.getName(), exercise.getType(), exercise.getVariant());
+        return new ExerciseResource(exercise.getName(), exercise.getType().getName(), exercise.getVariant().getName());
     }
 }

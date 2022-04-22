@@ -8,11 +8,9 @@ import dhbw.services.CustomerApplicationService;
 import dhbw.services.WorkoutApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,17 +42,17 @@ public class CustomerController {
         return this.customerApplicationService.getById(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> postCustomer(@RequestBody Customer newCustomer) {
-        Customer customer = this.customerApplicationService.save(newCustomer);
+    @PostMapping
+    public ResponseEntity<?> postCustomer(@RequestBody CustomerResource newCustomer) {
+        Customer customer = this.customerApplicationService.save(this.customerResourceMapper.reverse(newCustomer));
         return new ResponseEntity(customer, HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/{customerId}")
-    public ResponseEntity<?> assignWorkout(@PathVariable Long customerId, @RequestParam String workoutName, @RequestParam int amount) {
+    public ResponseEntity<?> assignWorkout(@PathVariable Long customerId, @RequestParam String workoutName) {
         Customer customer = this.customerApplicationService.getById(customerId);
         Workout workout = this.workoutApplicationService.getByName(workoutName);
-        customer.addWorkout(workout, amount);
+        customer.addWorkout(workout);
         this.customerApplicationService.save(customer);
         return new ResponseEntity<>(customerResourceMapper.apply(customer), HttpStatus.OK);
     }

@@ -37,7 +37,7 @@ public class GainWatchersApplication {
                     .stream()
                     .map(exercise -> new WorkoutExercise(exercise, 5, 5))
                     .collect(Collectors.toList());
-            Workout workout = new Workout("5x5 Basic", "", exercises);
+            Workout workout = new Workout("5x5 Basic", "", 3, exercises);
             workoutRepository.save(workout);
         });
     }
