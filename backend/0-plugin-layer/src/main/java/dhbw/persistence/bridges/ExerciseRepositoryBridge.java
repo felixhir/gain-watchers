@@ -1,6 +1,7 @@
 package dhbw.persistence.bridges;
 
 import dhbw.entities.Exercise;
+import dhbw.entities.ExerciseVariant;
 import dhbw.persistence.repositories.SpringDataExerciseRepository;
 import dhbw.repositories.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class ExerciseRepositoryBridge implements ExerciseRepository {
     }
 
     @Override
-    public Exercise getByName(String name) {
-        return springDataExerciseRepository.getById(name);
+    public Exercise getById(String name, ExerciseVariant variant) {
+        return springDataExerciseRepository.findExerciseByNameAndVariant(name, variant);
     }
 
     @Override

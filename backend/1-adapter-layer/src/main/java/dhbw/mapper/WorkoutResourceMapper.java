@@ -5,6 +5,7 @@ import dhbw.resources.WorkoutResource;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class WorkoutResourceMapper implements Function<Workout, WorkoutResource> {
@@ -15,6 +16,7 @@ public class WorkoutResourceMapper implements Function<Workout, WorkoutResource>
     }
 
     private WorkoutResource map(Workout workout) {
-        return new WorkoutResource(workout.getName(), workout.getDescription(), workout.getExercises());
+        return new WorkoutResource(workout.getName(), workout.getDescription(), workout.getDays(),
+                workout.getExercises().stream().map(new WorkoutExerciseResourceMapper()).collect(Collectors.toList()));
     }
 }

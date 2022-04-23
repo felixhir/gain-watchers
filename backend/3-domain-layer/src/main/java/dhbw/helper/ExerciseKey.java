@@ -8,7 +8,6 @@ import java.io.Serializable;
 public class ExerciseKey implements Serializable {
 
     private String name;
-    private ExerciseType type;
     private ExerciseVariant variant;
 
 }
