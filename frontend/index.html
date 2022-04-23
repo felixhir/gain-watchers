@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Gain Watchers</title>
     <link rel="stylesheet" href="./index.css">
-    <script src="jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <h1>Welcome to Gain Watchers 💪</h1>
+
     <div id="data-div">
       <div id="customer-wrapper">
         <h2>Customers</h2>
@@ -24,8 +24,9 @@
         <ul id="exercise-ul"></ul>
       </div>
     </div>
+
     <div id="form-div">
-      <form id="customer-form" onsubmit="postCustomer();return false" >
+      <form id="customer-form" onsubmit="postCustomer();return false">
         <fieldset>
           <legend>Add Customer: </legend>
           <input type="text" name="name" placeholder="Name" required><br>
@@ -33,9 +34,32 @@
           <input type="number" name="weight" placeholder="Weight" required><br>
           <input type="number" name="bodyFatPercentage" placeholder="Body Fat Level" required><br>
           <input type="number" name="daysAvailablePerWeek" placeholder="Availability per week" required><br><br>
-          <input type="submit" value="Add">
+          <input type="submit" value="Create">
         </fieldset>
       </form>
+
+      <form id="exercise-form" onsubmit="postExercise();return false">
+        <fieldset>
+          <legend>Add Exercise: </legend>
+          <input type="text" name="name" placeholder="Name" required><br>
+          <select name="exerciseType" id="type-selection"></select><br>
+          <select name="exerciseVariant" id="variant-selection"></select><br><br>
+          <input type="submit" value="Create">
+        </fieldset>
+      </form>
+
+      <form id="workout-form" onsubmit="postWorkout();return false">
+        <fieldset>
+          <legend>Add Workout: </legend>
+          <input type="text" name="name" placeholder="Name" required><br>
+          <input type="text" name="description" placeholder="Description"><br>
+          <input type="number" name="days" placeholder="Times Per Week"><br>
+          <ol id="workout-exercise-ol"></ol>
+          <input type="button" value="Add Exercise" onclick="createExerciseEntry()"><br><br>
+          <input type="submit" value="Create">
+        </fieldset>
+      </form>
+
     </div>
   <script src="script.js"></script>
   </body>

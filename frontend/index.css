@@ -18,6 +18,11 @@ ul {
     padding: 1em;
 }
 
+ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 li:not(:last-child) {
     padding-bottom: 1em;
 }
@@ -33,13 +38,17 @@ li:not(:last-child) {
     padding-right: 1em;
 }
 
-#form-div {
+#form-div div {
     float: left;
-    margin-top: 1em;
 }
 
 #form-div input {
     width: min-content;
+}
+
+#workout-exercise-ol input {
+    width: 3em;
+    margin-left: 1em;
 }
 
 input::-webkit-outer-spin-button,
