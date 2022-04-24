@@ -48,6 +48,22 @@ public class Workout {
         return this.days;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    public void setExercises(List<WorkoutExercise> exercises) {
+        this.exercises = exercises;
+    }
+
     public Workout() {
         //default
     }

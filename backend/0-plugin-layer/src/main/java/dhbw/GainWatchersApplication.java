@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,15 +25,21 @@ public class GainWatchersApplication {
                                   ExerciseRepository exerciseRepository,
                                   WorkoutRepository workoutRepository) {
         return (args -> {
-            exerciseRepository.save(new Exercise("Bankdrücken", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
-            exerciseRepository.save(new Exercise("Laufen", ExerciseType.CARDIO, ExerciseVariant.MACHINE));
-            exerciseRepository.save(new Exercise("Hüftöffner", ExerciseType.MOBILITY, ExerciseVariant.BODY_WEIGHT));
+            exerciseRepository.save(new Exercise("Bench Press", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
+            Exercise deadlift = exerciseRepository.save(new Exercise("Deadlift", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
+            exerciseRepository.save(new Exercise("Squat", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
+            exerciseRepository.save(new Exercise("Lat Pulldown", ExerciseType.CARDIO, ExerciseVariant.MACHINE));
+            exerciseRepository.save(new Exercise("Push-Ups", ExerciseType.MOBILITY, ExerciseVariant.BODY_WEIGHT));
 
             List<WorkoutExercise> exercises = exerciseRepository.findAll()
                     .stream()
                     .map(exercise -> new WorkoutExercise(exercise, 5, 5))
                     .collect(Collectors.toList());
             Workout workout = workoutRepository.save(new Workout("5x5 Basic", "", 3, exercises));
+            workoutRepository.save(new Workout("DEADLIFT EVERY DAY",
+                    "This program is nothing but deadlifts, 7 times a week. It will probably wreck your spine",
+                    7,
+                    Arrays.asList(new WorkoutExercise(deadlift, 10, 5))));
 
             Customer customer = new Customer("Max Mustermann", 180, 80, 15, 5);
             customer.addWorkout(workout);

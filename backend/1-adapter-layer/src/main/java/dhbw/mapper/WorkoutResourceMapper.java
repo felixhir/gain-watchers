@@ -1,6 +1,6 @@
 package dhbw.mapper;
 
-import dhbw.entities.Workout;
+import dhbw.entities.*;
 import dhbw.resources.WorkoutResource;
 import org.springframework.stereotype.Component;
 

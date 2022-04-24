@@ -28,7 +28,7 @@ li:not(:last-child) {
 }
 
 #customer-wrapper, #exercise-wrapper, #workout-wrapper {
-    width: auto;
+    max-width: 350px;
     float: left;
     margin-left: 1em;
     margin-right: 1em;
@@ -36,6 +36,19 @@ li:not(:last-child) {
     border: 2px solid black;
     padding-left: 0.5em;
     padding-right: 0.5em;
+    overflow-y: auto;
+    background-color: aliceblue;
+    max-height: 666px;
+}
+
+#customer-wrapper {
+    overflow-y: auto;
+    max-height: 666px;
+}
+
+#form-div {
+    float: right;
+    margin-right: 10%;
 }
 
 #form-div div {
@@ -46,7 +59,7 @@ li:not(:last-child) {
     width: min-content;
 }
 
-#workout-exercise-ol input {
+#workout-exercise-ol input, #edit-ol input {
     width: 3em;
     margin-left: 1em;
 }
@@ -76,4 +89,11 @@ input::-webkit-inner-spin-button {
 
 h3 {
     text-align: center;
+}
+
+.workout {
+    border: 1px solid gray;
+    padding: 0.5em;
+    text-align: center;
+    margin-bottom: 0.5em;
 }

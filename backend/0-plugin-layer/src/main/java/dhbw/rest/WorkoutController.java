@@ -56,9 +56,19 @@ public class WorkoutController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> updateWorkout(@PathVariable String id, @RequestBody Workout newWorkout) {
-        Workout oldWorkout = this.workoutApplicationService.getByName(id);
-        Workout workout = this.workoutApplicationService.replaceWith(oldWorkout, newWorkout);
-        return new ResponseEntity<>(workout, HttpStatus.OK);
+    public ResponseEntity<?> updateWorkout(@PathVariable String id, @RequestBody WorkoutResource newWorkoutResource) {
+        Workout workout = this.workoutApplicationService.getByName(id);
+        List<WorkoutExercise> exercises = new LinkedList<>();
+        WorkoutExerciseResourceMapper mapper = new WorkoutExerciseResourceMapper();
+        for (WorkoutExerciseResource resource: newWorkoutResource.getExercises()) {
+            Exercise exercise = this.exerciseApplicationService.getById(resource.getExerciseName(), ExerciseVariant.valueOf(resource.getExerciseVariant()));
+            exercises.add(mapper.reverse(resource, exercise));
+        }
+        workout.setName(newWorkoutResource.getName());
+        workout.setDescription(newWorkoutResource.getDescription());
+        workout.setDays(newWorkoutResource.getDays());
+        workout.setExercises(exercises);
+
+        return new ResponseEntity<>(this.workoutApplicationService.save(workout), HttpStatus.OK);
     }
 }

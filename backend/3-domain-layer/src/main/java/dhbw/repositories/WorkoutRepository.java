@@ -12,5 +12,4 @@ public interface WorkoutRepository {
 
     Workout getByName(String name);
 
-    Workout replaceWith(Workout oldWorkout, Workout newWorkout);
 }

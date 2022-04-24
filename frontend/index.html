@@ -25,16 +25,14 @@
       </div>
     </div>
 
-    <div id="detail-div"></div>
-
     <div id="form-div">
       <form id="customer-form" onsubmit="postCustomer();return false">
         <fieldset>
           <legend>Add Customer: </legend>
           <input type="text" name="name" placeholder="Name" required><br>
-          <input type="number" name="height" placeholder="Height" required><br>
-          <input type="number" name="weight" placeholder="Weight" required><br>
-          <input type="number" name="bodyFatPercentage" placeholder="Body Fat Level" required><br>
+          <input type="number" name="height" placeholder="Height (in cm)" required><br>
+          <input type="number" name="weight" placeholder="Weight (in kg)" required><br>
+          <input type="number" name="bodyFatPercentage" placeholder="Body Fat Level (%)" required><br>
           <input type="number" name="daysAvailablePerWeek" placeholder="Availability per week" required><br><br>
           <input type="submit" value="Create">
         </fieldset>
@@ -57,11 +55,24 @@
           <input type="text" name="description" placeholder="Description"><br>
           <input type="number" name="days" placeholder="Times Per Week"><br>
           <ol id="workout-exercise-ol"></ol>
-          <input type="button" value="Add Exercise" onclick="createExerciseEntry()"><br><br>
+          <input type="button" value="Add Exercise" onclick="createExerciseEntry(null, 'workout-exercise-ol');return false">
+          <input type="button" value="Remove Exercise" onclick="removeLastExercise('workout-exercise-ol');return false"><br><br>
           <input type="submit" value="Create">
         </fieldset>
       </form>
 
+      <form id="update-form" onsubmit="updateWorkout();return false">
+        <fieldset>
+          <legend>Edit Workout: </legend>
+          <input id="edit-name" class="edit" type="text" name="name" placeholder="Name" required disabled><br>
+          <input id="edit-description" class="edit" type="text" name="description" placeholder="Description" disabled><br>
+          <input id="edit-days" class="edit" type="number" name="days" placeholder="Times Per Week" disabled><br>
+          <ol id="edit-ol"></ol>
+          <input id="edit-add" class="edit" type="button" value="Add Exercise" onclick="createExerciseEntry(null, 'edit-ol');return false" disabled>
+          <input id="edit-remove" class="edit" type="button" value="Remove Exercise" onclick="removeLastExercise('edit-ol');return false" disabled><br><br>
+          <input id="edit-submit" class="edit" type="submit" value="Update" disabled>
+        </fieldset>
+      </form>
     </div>
   <script src="script.js"></script>
   </body>
