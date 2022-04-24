@@ -1,5 +1,6 @@
 package dhbw.resources;
 
+import java.util.List;
 import java.util.Map;
 
 public class CustomerResource {
@@ -10,9 +11,9 @@ public class CustomerResource {
     private double weight;
     private int height;
     private int bodyFatPercentage;
-    private Map<String, Integer> workouts;
+    private List<String> workouts;
 
-    public CustomerResource(Long id, String name, int availability, int bodyFatPercentage, double weight, int height, Map<String, Integer> workouts) {
+    public CustomerResource(Long id, String name, int availability, int bodyFatPercentage, double weight, int height, List<String> workouts) {
         this.id = id;
         this.name = name;
         this.availability = availability;
@@ -46,7 +47,7 @@ public class CustomerResource {
         return id;
     }
 
-    public Map<String, Integer> getWorkouts() {
+    public List<String> getWorkouts() {
         return workouts;
     }
 }

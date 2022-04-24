@@ -17,7 +17,7 @@ public class Customer {
     private int bodyFatPercentage;
     private int daysAvailablePerWeek;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Workout> workouts;
 
     public Customer(String name, int height, double weight, int bodyFatPercentage, int daysAvailablePerWeek) {
@@ -77,6 +77,9 @@ public class Customer {
     public void addWorkout(Workout workout) {
         if (workouts.contains(workout)) {
             throw new IllegalArgumentException("This workout has already been added and updating the amount is no feature of the current version");
+        }
+        if (availableDays() < workout.getDays()) {
+            throw new IllegalArgumentException("This workout does not fit the customers schedule");
         }
         workouts.add(workout);
     }

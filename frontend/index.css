@@ -1,5 +1,6 @@
 h1 {
     font-family: sans-serif;
+    text-align: center;
 }
 
 h2 {
@@ -14,7 +15,6 @@ body {
 ul {
     list-style-type: none;
     padding-left: 0;
-    border: 1px solid gray;
     padding: 1em;
 }
 
@@ -34,8 +34,8 @@ li:not(:last-child) {
     margin-right: 1em;
     text-align: left;
     border: 2px solid black;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 #form-div div {
@@ -55,4 +55,25 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+#detail-div {
+    position: absolute;
+    text-align: left;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: rgb(88, 177, 255);
+    padding: 1em;
+}
+
+.customer {
+    border: 2px solid black;
+    padding: 1em;
+}
+
+.customer-list {
+    border: 1px solid gray;
+}
+
+h3 {
+    text-align: center;
 }

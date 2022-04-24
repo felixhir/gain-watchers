@@ -24,11 +24,6 @@ public class GainWatchersApplication {
                                   ExerciseRepository exerciseRepository,
                                   WorkoutRepository workoutRepository) {
         return (args -> {
-            Customer customer = new Customer("Max Mustermann", 180, 80, 15, 5);
-            customerRepository.save(customer);
-            customerRepository.save(new Customer("Maxime Musterfrau", 175, 65.5, 20, 3));
-            customerRepository.save(new Customer("Maggus Rühl", 180, 125, 25, 7));
-
             exerciseRepository.save(new Exercise("Bankdrücken", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
             exerciseRepository.save(new Exercise("Laufen", ExerciseType.CARDIO, ExerciseVariant.MACHINE));
             exerciseRepository.save(new Exercise("Hüftöffner", ExerciseType.MOBILITY, ExerciseVariant.BODY_WEIGHT));
@@ -37,8 +32,13 @@ public class GainWatchersApplication {
                     .stream()
                     .map(exercise -> new WorkoutExercise(exercise, 5, 5))
                     .collect(Collectors.toList());
-            Workout workout = new Workout("5x5 Basic", "", 3, exercises);
-            workoutRepository.save(workout);
+            Workout workout = workoutRepository.save(new Workout("5x5 Basic", "", 3, exercises));
+
+            Customer customer = new Customer("Max Mustermann", 180, 80, 15, 5);
+            customer.addWorkout(workout);
+            customerRepository.save(customer);
+            customerRepository.save(new Customer("Maxime Musterfrau", 175, 65.5, 20, 3));
+            customerRepository.save(new Customer("Maggus Rühl", 180, 125, 25, 7));
         });
     }
 }

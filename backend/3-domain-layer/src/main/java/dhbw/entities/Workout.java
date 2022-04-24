@@ -12,7 +12,7 @@ public class Workout {
     private String description;
     private int days;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<WorkoutExercise> exercises;
 
     public Workout(String name, String description, int days, List<WorkoutExercise> exercises) {

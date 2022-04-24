@@ -1,10 +1,13 @@
 package dhbw.mapper;
 
 import dhbw.entities.Customer;
+import dhbw.entities.Workout;
 import dhbw.resources.CustomerResource;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -17,9 +20,9 @@ public class CustomerResourceMapper implements Function<Customer, CustomerResour
     }
 
     private CustomerResource map(Customer customer) {
-        Map<String, Integer> workoutMap = new HashMap<>();
-        customer.getWorkouts().forEach(workout -> workoutMap.put(workout.getName(), workout.getDays()));
-        return new CustomerResource(customer.getId(), customer.getName(), customer.getDaysAvailablePerWeek(), customer.getBodyFatPercentage(), customer.getWeight(), customer.getHeight(), workoutMap);
+        List<String> workoutNames = new LinkedList<>();
+        customer.getWorkouts().forEach(workout -> workoutNames.add(workout.getName()));
+        return new CustomerResource(customer.getId(), customer.getName(), customer.getDaysAvailablePerWeek(), customer.getBodyFatPercentage(), customer.getWeight(), customer.getHeight(), workoutNames);
     }
 
     public Customer reverse(CustomerResource newCustomer) {
