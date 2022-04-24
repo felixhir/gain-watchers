@@ -1,7 +1,6 @@
 package dhbw.rest;
 
 import dhbw.entities.Exercise;
-import dhbw.entities.ExerciseType;
 import dhbw.entities.ExerciseVariant;
 import dhbw.mapper.ExerciseResourceMapper;
 import dhbw.resources.ExerciseResource;
@@ -40,11 +39,6 @@ public class ExerciseController {
     public ResponseEntity<?> createExercise(@RequestBody ExerciseResource newExercise) {
         Exercise exercise = exerciseApplicationService.save(this.exerciseResourceMapper.reverse(newExercise));
         return new ResponseEntity<>(exerciseResourceMapper.apply(exercise), HttpStatus.CREATED);
-    }
-
-    @GetMapping(path = "/types")
-    public List<ExerciseType> getTypes() {
-        return Arrays.stream(ExerciseType.values()).collect(Collectors.toList());
     }
 
     @GetMapping(path = "/variants")

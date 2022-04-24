@@ -21,16 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     })
-    fetch(api_url + "exercises/types").then(response => {
-        response.json().then(types => {
-            const typeSelection = document.getElementById("type-selection")
-            for (var type of types) {
-                var item = document.createElement("option")
-                item.textContent = type
-                typeSelection.appendChild(item)
-            }
-        })
-    })
 })
 
 function intoNameList(items) {
@@ -349,8 +339,7 @@ function updateWorkout() {
         body: JSON.stringify(jsonData)
     }).then(response => {
         if (response.status == 200) {
-            //reloadEntities()
-            console.log("yeah")
+            reloadEntities()
         }
     })
 }

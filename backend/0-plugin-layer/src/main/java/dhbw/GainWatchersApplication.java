@@ -25,11 +25,11 @@ public class GainWatchersApplication {
                                   ExerciseRepository exerciseRepository,
                                   WorkoutRepository workoutRepository) {
         return (args -> {
-            exerciseRepository.save(new Exercise("Bench Press", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
-            Exercise deadlift = exerciseRepository.save(new Exercise("Deadlift", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
-            exerciseRepository.save(new Exercise("Squat", ExerciseType.FREE_WEIGHT, ExerciseVariant.BARBELL));
-            exerciseRepository.save(new Exercise("Lat Pulldown", ExerciseType.CARDIO, ExerciseVariant.MACHINE));
-            exerciseRepository.save(new Exercise("Push-Ups", ExerciseType.MOBILITY, ExerciseVariant.BODY_WEIGHT));
+            exerciseRepository.save(new Exercise("Bench Press", ExerciseVariant.BARBELL));
+            Exercise deadlift = exerciseRepository.save(new Exercise("Deadlift", ExerciseVariant.BARBELL));
+            exerciseRepository.save(new Exercise("Squat", ExerciseVariant.BARBELL));
+            exerciseRepository.save(new Exercise("Lat Pulldown", ExerciseVariant.MACHINE));
+            exerciseRepository.save(new Exercise("Push-Ups", ExerciseVariant.BODY_WEIGHT));
 
             List<WorkoutExercise> exercises = exerciseRepository.findAll()
                     .stream()

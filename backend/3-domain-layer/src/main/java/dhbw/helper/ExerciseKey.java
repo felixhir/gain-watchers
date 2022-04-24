@@ -1,6 +1,5 @@
 package dhbw.helper;
 
-import dhbw.entities.ExerciseType;
 import dhbw.entities.ExerciseVariant;
 
 import java.io.Serializable;
