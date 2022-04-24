@@ -24,14 +24,14 @@ public class Customer {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("Every customer must have a name");
         }
-        if (height < 50 || height > 250) {
-            throw new IllegalArgumentException("Entered invalid height");
+        if (height < 100 || height > 250) {
+            throw new IllegalArgumentException("A persons height must lie within a reasonable range (100cm-250cm)");
         }
-        if (bodyFatPercentage < 1) {
-            throw new IllegalArgumentException("A persons body fat cannot be less than 1%");
+        if (bodyFatPercentage < 1 || bodyFatPercentage > 100) {
+            throw new IllegalArgumentException("A persons body fat cannot be less than 1% or more than 100%");
         }
         if (daysAvailablePerWeek < 0 || daysAvailablePerWeek > 7) {
-            throw new IllegalArgumentException("A person can only be available 0 to 7 days per week");
+            throw new IllegalArgumentException("A week cannot have negative or more than 7 days");
         }
 
         this.name = name;
@@ -76,7 +76,7 @@ public class Customer {
 
     public void addWorkout(Workout workout) {
         if (workouts.contains(workout)) {
-            throw new IllegalArgumentException("This workout has already been added and updating the amount is no feature of the current version");
+            throw new IllegalArgumentException("This workout has already been assigned to the customer");
         }
         if (availableDays() < workout.getDays()) {
             throw new IllegalArgumentException("This workout does not fit the customers schedule");
