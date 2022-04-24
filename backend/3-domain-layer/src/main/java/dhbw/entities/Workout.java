@@ -23,7 +23,7 @@ public class Workout {
             throw new IllegalArgumentException("A workout must contain at least 1 exercise");
         }
         if(days < 1) {
-            throw new IllegalArgumentException("A workout must be done at least once per wekk");
+            throw new IllegalArgumentException("A workout must be done at least once per week");
         }
         this.name = name;
         this.description = description;

@@ -31,6 +31,6 @@ public class CustomerRepositoryBridge implements CustomerRepository {
 
     @Override
     public Customer getById(Long uuid) {
-        return springDataCustomerRepository.getById(uuid);
+        return springDataCustomerRepository.findById(uuid).get();
     }
 }

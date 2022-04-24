@@ -38,22 +38,38 @@ public class CustomerController {
     }
 
     @GetMapping(path = "/{id}")
-    public Customer getCustomer(@PathVariable Long id) {
-        return this.customerApplicationService.getById(id);
+    public ResponseEntity<?> getCustomer(@PathVariable Long id) {
+        try {
+            return new ResponseEntity<>(this.customerApplicationService.getById(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping
     public ResponseEntity<?> postCustomer(@RequestBody CustomerResource newCustomer) {
-        Customer customer = this.customerApplicationService.save(this.customerResourceMapper.reverse(newCustomer));
-        return new ResponseEntity(customer, HttpStatus.CREATED);
+        try {
+            Customer customer = this.customerApplicationService.save(this.customerResourceMapper.reverse(newCustomer));
+            return new ResponseEntity(customer, HttpStatus.CREATED);
+        } catch (Exception e) {
+            if (e.getClass().equals(IllegalArgumentException.class)) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            } else {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
     }
 
     @PostMapping(path = "/{customerId}")
     public ResponseEntity<?> assignWorkout(@PathVariable Long customerId, @RequestParam String workoutName) {
-        Customer customer = this.customerApplicationService.getById(customerId);
-        Workout workout = this.workoutApplicationService.getByName(workoutName);
-        customer.addWorkout(workout);
-        this.customerApplicationService.save(customer);
-        return new ResponseEntity<>(customerResourceMapper.apply(customer), HttpStatus.OK);
+        try {
+            Customer customer = this.customerApplicationService.getById(customerId);
+            Workout workout = this.workoutApplicationService.getByName(workoutName);
+            customer.addWorkout(workout);
+            this.customerApplicationService.save(customer);
+            return new ResponseEntity<>(customerResourceMapper.apply(customer), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

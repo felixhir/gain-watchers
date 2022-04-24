@@ -44,31 +44,39 @@ public class WorkoutController {
 
     @PostMapping
     public ResponseEntity<?> createWorkout(@RequestBody WorkoutResource newWorkout) {
-        List<WorkoutExercise> exercises = new LinkedList<>();
-        WorkoutExerciseResourceMapper mapper = new WorkoutExerciseResourceMapper();
-        for (WorkoutExerciseResource resource: newWorkout.getExercises()) {
-            Exercise exercise = this.exerciseApplicationService.getById(resource.getExerciseName(), ExerciseVariant.valueOf(resource.getExerciseVariant()));
-            exercises.add(mapper.reverse(resource, exercise));
+        try {
+            List<WorkoutExercise> exercises = new LinkedList<>();
+            WorkoutExerciseResourceMapper mapper = new WorkoutExerciseResourceMapper();
+            for (WorkoutExerciseResource resource: newWorkout.getExercises()) {
+                Exercise exercise = this.exerciseApplicationService.getById(resource.getExerciseName(), ExerciseVariant.valueOf(resource.getExerciseVariant()));
+                exercises.add(mapper.reverse(resource, exercise));
+            }
+            Workout toSave = new Workout(newWorkout.getName(), newWorkout.getDescription(), newWorkout.getDays(), exercises);
+            Workout workout = workoutApplicationService.save(toSave);
+            return new ResponseEntity<>(workout, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        Workout toSave = new Workout(newWorkout.getName(), newWorkout.getDescription(), newWorkout.getDays(), exercises);
-        Workout workout = workoutApplicationService.save(toSave);
-        return new ResponseEntity<>(workout, HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<?> updateWorkout(@PathVariable String id, @RequestBody WorkoutResource newWorkoutResource) {
-        Workout workout = this.workoutApplicationService.getByName(id);
-        List<WorkoutExercise> exercises = new LinkedList<>();
-        WorkoutExerciseResourceMapper mapper = new WorkoutExerciseResourceMapper();
-        for (WorkoutExerciseResource resource: newWorkoutResource.getExercises()) {
-            Exercise exercise = this.exerciseApplicationService.getById(resource.getExerciseName(), ExerciseVariant.valueOf(resource.getExerciseVariant()));
-            exercises.add(mapper.reverse(resource, exercise));
-        }
-        workout.setName(newWorkoutResource.getName());
-        workout.setDescription(newWorkoutResource.getDescription());
-        workout.setDays(newWorkoutResource.getDays());
-        workout.setExercises(exercises);
+        try {
+            Workout workout = this.workoutApplicationService.getByName(id);
+            List<WorkoutExercise> exercises = new LinkedList<>();
+            WorkoutExerciseResourceMapper mapper = new WorkoutExerciseResourceMapper();
+            for (WorkoutExerciseResource resource: newWorkoutResource.getExercises()) {
+                Exercise exercise = this.exerciseApplicationService.getById(resource.getExerciseName(), ExerciseVariant.valueOf(resource.getExerciseVariant()));
+                exercises.add(mapper.reverse(resource, exercise));
+            }
+            workout.setName(newWorkoutResource.getName());
+            workout.setDescription(newWorkoutResource.getDescription());
+            workout.setDays(newWorkoutResource.getDays());
+            workout.setExercises(exercises);
 
-        return new ResponseEntity<>(this.workoutApplicationService.save(workout), HttpStatus.OK);
+            return new ResponseEntity<>(this.workoutApplicationService.save(workout), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

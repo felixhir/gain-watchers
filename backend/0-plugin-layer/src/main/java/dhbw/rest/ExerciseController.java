@@ -37,8 +37,12 @@ public class ExerciseController {
 
     @PostMapping
     public ResponseEntity<?> createExercise(@RequestBody ExerciseResource newExercise) {
-        Exercise exercise = exerciseApplicationService.save(this.exerciseResourceMapper.reverse(newExercise));
-        return new ResponseEntity<>(exerciseResourceMapper.apply(exercise), HttpStatus.CREATED);
+        try {
+            Exercise exercise = exerciseApplicationService.save(this.exerciseResourceMapper.reverse(newExercise));
+            return new ResponseEntity<>(exerciseResourceMapper.apply(exercise), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping(path = "/variants")

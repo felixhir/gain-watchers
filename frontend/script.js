@@ -164,8 +164,14 @@ function loadCustomers() {
                             "Content-Type": "application/json"
                         }
                     }).then(response => {
-                        if (response.status == 200) {
+                        if (response.status == 400) {
+                            response.text().then(errorMessage => {
+                                displayError(errorMessage)
+                            })
+                        } else if(response.status == 201) {
                             loadCustomers()
+                        } else {
+                            displayError("Internal Server Error")
                         }
                     })
                 })
@@ -230,7 +236,6 @@ function removeLastExercise(listId) {
     var entryList = document.getElementById(listId)
     if (entryList.childNodes.length > 0) {
         entryList.removeChild(entryList.lastChild)
-
     }
 }
 
@@ -250,10 +255,14 @@ function postCustomer() {
         },
         body: JSON.stringify(jsonData),
     }).then(response => {
-        if (response.status == 201) {
+        if (response.status == 400) {
+            response.text().then(errorMessage => {
+                displayError(errorMessage)
+            })
+        } else if(response.status == 201) {
             reloadEntities()
         } else {
-            window.alert("You have entered an invalid value!")
+            displayError("Internal Server Error")
         }
     })
 }
@@ -270,8 +279,14 @@ function postExercise() {
         },
         body: JSON.stringify(jsonData)
     }).then(response => {
-        if (response.status == 201) {
+        if (response.status == 400) {
+            response.text().then(errorMessage => {
+                displayError(errorMessage)
+            })
+        } else if(response.status == 201) {
             reloadEntities()
+        } else {
+            displayError("Internal Server Error")
         }
     })
 }
@@ -304,8 +319,14 @@ function postWorkout() {
         },
         body: JSON.stringify(jsonData)
     }).then(response => {
-        if (response.status == 201) {
+        if (response.status == 400) {
+            response.text().then(errorMessage => {
+                displayError(errorMessage)
+            })
+        } else if(response.status == 201) {
             reloadEntities()
+        } else {
+            displayError("Internal Server Error")
         }
     })
 }
@@ -338,8 +359,16 @@ function updateWorkout() {
         },
         body: JSON.stringify(jsonData)
     }).then(response => {
-        if (response.status == 200) {
+        if (response.status == 400) {
+            response.text().then(errorMessage => {
+                displayError(errorMessage)
+            })
+        } else {
             reloadEntities()
-        }
+        } 
     })
+}
+
+function displayError(message) {
+    window.alert(`There has been an error with your request. Reason: ${message}`)
 }
