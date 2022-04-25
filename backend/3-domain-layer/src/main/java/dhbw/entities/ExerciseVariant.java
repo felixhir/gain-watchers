@@ -1,8 +1,6 @@
 package dhbw.entities;
 
 public enum ExerciseVariant {
-    PRONATED_GRIP("Pronated Grip"),
-    SUPINATED_GRIP("Supinated Grip"),
     CABLE("Cable"),
     BARBELL("Barbell"),
     DUMBBELL("Dumbbell"),

@@ -246,7 +246,7 @@ function postCustomer() {
     jsonData["height"] = parseInt(jsonData["height"])
     jsonData["weight"] = parseInt(jsonData["weight"])
     jsonData["bodyFatPercentage"] = parseInt(jsonData["bodyFatPercentage"])
-    jsonData["daysAvailablePerWeek"] = parseInt(jsonData["daysAvailablePerWeek"])
+    jsonData["availability"] = parseInt(jsonData["availability"])
 
     fetch(api_url + "customers", {
         method: "POST",

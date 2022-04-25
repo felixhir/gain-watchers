@@ -19,12 +19,12 @@ public class Customer {
     @Embedded
     private Weight weight;
     private int bodyFatPercentage;
-    private int daysAvailablePerWeek;
+    private int availability;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<Workout> workouts;
 
-    public Customer(String name, int height, double weight, int bodyFatPercentage, int daysAvailablePerWeek) {
+    public Customer(String name, int height, double weight, int bodyFatPercentage, int availability) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("Every customer must have a name");
         }
@@ -34,7 +34,7 @@ public class Customer {
         if (bodyFatPercentage < 1 || bodyFatPercentage > 100) {
             throw new IllegalArgumentException("A persons body fat cannot be less than 1% or more than 100%");
         }
-        if (daysAvailablePerWeek < 0 || daysAvailablePerWeek > 7) {
+        if (availability < 0 || availability > 7) {
             throw new IllegalArgumentException("A week cannot have negative or more than 7 days");
         }
 
@@ -42,7 +42,7 @@ public class Customer {
         this.height = height;
         this.weight = new Weight(weight, true);
         this.bodyFatPercentage = bodyFatPercentage;
-        this.daysAvailablePerWeek = daysAvailablePerWeek;
+        this.availability = availability;
         this.workouts = new LinkedList<>();
     }
 
@@ -70,8 +70,8 @@ public class Customer {
         return bodyFatPercentage;
     }
 
-    public int getDaysAvailablePerWeek() {
-        return daysAvailablePerWeek;
+    public int getAvailability() {
+        return availability;
     }
 
     public List<Workout> getWorkouts() {
@@ -89,7 +89,7 @@ public class Customer {
     }
 
     private int availableDays() {
-        int total = this.daysAvailablePerWeek;
+        int total = this.availability;
         for(Workout workout: workouts) {
             total -= workout.getDays();
         }

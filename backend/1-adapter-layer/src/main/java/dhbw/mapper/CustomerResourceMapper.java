@@ -19,7 +19,7 @@ public class CustomerResourceMapper implements Function<Customer, CustomerResour
     private CustomerResource map(Customer customer) {
         List<String> workoutNames = new LinkedList<>();
         customer.getWorkouts().forEach(workout -> workoutNames.add(workout.getName()));
-        return new CustomerResource(customer.getId(), customer.getName(), customer.getDaysAvailablePerWeek(), customer.getBodyFatPercentage(), customer.getWeight(), customer.getHeight(), workoutNames);
+        return new CustomerResource(customer.getId(), customer.getName(), customer.getAvailability(), customer.getBodyFatPercentage(), customer.getWeight(), customer.getHeight(), workoutNames);
     }
 
     public Customer reverse(CustomerResource newCustomer) {
