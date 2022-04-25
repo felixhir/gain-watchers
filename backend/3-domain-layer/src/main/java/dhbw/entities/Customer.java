@@ -1,5 +1,7 @@
 package dhbw.entities;
 
+import dhbw.valueObjects.Weight;
+
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +15,9 @@ public class Customer {
 
     private String name;
     private int height;
-    private double weight;
+
+    @Embedded
+    private Weight weight;
     private int bodyFatPercentage;
     private int daysAvailablePerWeek;
 
@@ -36,7 +40,7 @@ public class Customer {
 
         this.name = name;
         this.height = height;
-        this.weight = weight;
+        this.weight = new Weight(weight, true);
         this.bodyFatPercentage = bodyFatPercentage;
         this.daysAvailablePerWeek = daysAvailablePerWeek;
         this.workouts = new LinkedList<>();
@@ -59,7 +63,7 @@ public class Customer {
     }
 
     public double getWeight() {
-        return weight;
+        return weight.getWeightInKg();
     }
 
     public int getBodyFatPercentage() {
