@@ -42,44 +42,4 @@ public class WorkoutExercise {
         return exercise;
     }
 
-    public void addSets(int amount) {
-        if(this.sets + amount <= 0) {
-            throw new IllegalArgumentException();
-        }
-        this.sets += amount;
-    }
-
-    public void subtractSets(int amount) {
-        if(this.sets - amount <= 0) {
-            throw new IllegalArgumentException();
-        }
-        this.sets -= amount;
-    }
-
-    public void addReps(int amount) {
-        if(this.reps + amount <= 0) {
-            throw new IllegalArgumentException();
-        }
-        this.reps += amount;
-    }
-
-    public void subtractReps(int amount) {
-        if(this.reps + amount < 0) {
-            throw new IllegalArgumentException();
-        }
-        this.reps += amount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WorkoutExercise that = (WorkoutExercise) o;
-        return sets == that.sets && reps == that.reps && Objects.equals(exercise, that.exercise);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(exercise, sets, reps);
-    }
 }

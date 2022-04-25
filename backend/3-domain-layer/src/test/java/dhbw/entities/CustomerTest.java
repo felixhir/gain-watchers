@@ -8,32 +8,21 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class CustomerTest {
 
-    private Workout workout;
     private Customer customer;
 
     @BeforeEach
     void setUp() {
         customer = new Customer("Max Mustermann", 190, 80, 15, 3);
-
-        WorkoutExercise exerciseOne = new WorkoutExercise(new Exercise("Bench Press", ExerciseVariant.BARBELL), 3, 10);
-        WorkoutExercise exerciseTwo = new WorkoutExercise(new Exercise("Bicep Curl", ExerciseVariant.DUMBBELL), 5, 12);
-
-        workout = new Workout("Test Workout", "a workout used in a test", 3, Arrays.asList(exerciseOne, exerciseTwo));
     }
 
     @Test
     void validCustomer() {
-        Customer customer = new Customer("Max Mustermann", 190, 80, 15, 3);
-
-        assertEquals("Max Mustermann", customer.getName());
-        assertEquals(190, customer.getHeight());
-        assertEquals(80, customer.getWeight());
-        assertEquals(15, customer.getBodyFatPercentage());
-        assertEquals(3, customer.getDaysAvailablePerWeek());
-        assertEquals(0, customer.getWorkouts().size());
+        assertDoesNotThrow(() -> new Customer("Max Mustermann", 190, 80, 15, 3));
     }
 
     @Test
@@ -79,7 +68,7 @@ class CustomerTest {
     void addWorkout() {
         Customer customer = new Customer("Max Mustermann", 190, 80, 15, 3);
 
-        customer.addWorkout(workout);
+        customer.addWorkout(mock(Workout.class));
 
         assertEquals(1, customer.getWorkouts().size());
     }
@@ -87,9 +76,11 @@ class CustomerTest {
     @Test
     void exceedingCustomerAvailability() {
         Customer customer = new Customer("Max Mustermann", 190, 80, 15, 1);
+        Workout mockWorkout = mock(Workout.class);
+        when(mockWorkout.getDays()).thenReturn(7);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            customer.addWorkout(workout);
+            customer.addWorkout(mockWorkout);
         });
 
         assertEquals("This workout does not fit the customers schedule", exception.getMessage());
@@ -97,10 +88,11 @@ class CustomerTest {
 
     @Test
     void addWorkoutMoreThanOnce() {
-        customer.addWorkout(workout);
+        Workout mockWorkout = mock(Workout.class);
 
+        customer.addWorkout(mockWorkout);
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            customer.addWorkout(workout);
+            customer.addWorkout(mockWorkout);
         });
 
         assertEquals("This workout has already been assigned to the customer", exception.getMessage());

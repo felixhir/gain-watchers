@@ -49,6 +49,9 @@ public class Workout {
     }
 
     public void setName(String name) {
+        if(name.isEmpty()) {
+            throw new IllegalArgumentException("Every workout must have a name");
+        }
         this.name = name;
     }
 
@@ -68,38 +71,4 @@ public class Workout {
         //default
     }
 
-    public void addExercise(WorkoutExercise exercise) {
-        if(!exercises.contains(exercise)) {
-            throw new IllegalArgumentException("An exercise can only be part of a workout once");
-        }
-        exercises.add(exercise);
-    }
-
-    public void removeExercise(WorkoutExercise exercise) {
-        if(!exercises.contains(exercise)) {
-            throw new IllegalArgumentException("Exercise is not part of the workout and thus cannot be removed");
-        }
-        exercises.remove(exercise);
-    }
-
-    public void changeExerciseTo(WorkoutExercise newExercise) {
-        WorkoutExercise oldExercise = null;
-        for (WorkoutExercise exercise: exercises) {
-            if(exercise.getExercise().equals(newExercise.getExercise())) {
-                oldExercise = exercise;
-            }
-        }
-        if(oldExercise == null) {
-            throw new IllegalArgumentException("Cannot change exercise that is not part of the workout");
-        }
-        exercises.remove(oldExercise);
-        exercises.add(newExercise);
-    }
-
-    public void changeName(String newName) {
-        if(newName.isEmpty()) {
-            throw new IllegalArgumentException("The new name cannot be empty");
-        }
-        this.name = newName;
-    }
 }
