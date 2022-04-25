@@ -50,7 +50,7 @@ public class CustomerController {
     public ResponseEntity<?> postCustomer(@RequestBody CustomerResource newCustomer) {
         try {
             Customer customer = this.customerApplicationService.save(this.customerResourceMapper.reverse(newCustomer));
-            return new ResponseEntity(customer, HttpStatus.CREATED);
+            return new ResponseEntity<>(customer, HttpStatus.CREATED);
         } catch (Exception e) {
             if (e.getClass().equals(IllegalArgumentException.class)) {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

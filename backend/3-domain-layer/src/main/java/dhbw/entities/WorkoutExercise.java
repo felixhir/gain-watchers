@@ -1,7 +1,6 @@
 package dhbw.entities;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 public class WorkoutExercise {
