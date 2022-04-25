@@ -12,10 +12,10 @@ public class CustomerResource {
     private int bodyFatPercentage;
     private List<String> workouts;
 
-    public CustomerResource(Long id, String name, int availability, int bodyFatPercentage, double weight, int height, List<String> workouts) {
+    public CustomerResource(Long id, String name, int daysAvailablePerWeek, int bodyFatPercentage, double weight, int height, List<String> workouts) {
         this.id = id;
         this.name = name;
-        this.availability = availability;
+        this.availability = daysAvailablePerWeek;
         this.weight = weight;
         this.height = height;
         this.workouts = workouts;
