@@ -1,6 +1,6 @@
 package dhbw.services;
 
-import dhbw.valueObjects.Exercise;
+import dhbw.entities.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.repositories.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;

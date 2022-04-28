@@ -1,6 +1,6 @@
 package dhbw.rest;
 
-import dhbw.valueObjects.Exercise;
+import dhbw.entities.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.entities.Workout;
 import dhbw.valueObjects.WorkoutExercise;

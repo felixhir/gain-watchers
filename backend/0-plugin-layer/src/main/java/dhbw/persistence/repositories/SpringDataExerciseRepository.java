@@ -1,6 +1,6 @@
 package dhbw.persistence.repositories;
 
-import dhbw.valueObjects.Exercise;
+import dhbw.entities.Exercise;
 import dhbw.helper.ExerciseVariant;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,6 +1,5 @@
 package dhbw.entities;
 
-import dhbw.valueObjects.Exercise;
 import dhbw.valueObjects.WorkoutExercise;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
