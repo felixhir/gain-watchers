@@ -29,17 +29,17 @@ class CustomerTest {
             new Customer("", 190, 80, 15, 3);
         });
 
-        assertEquals("Every customer must have a name", exception.getMessage());
+        assertEquals("A name cannot be empty", exception.getMessage());
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {10, 99, 251, 300})
+    @ValueSource(ints = {10, 49, 261, 300})
     void invalidHeight(int height) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new Customer("Karl", height, 80, 15, 3);
         });
 
-        assertEquals("A persons height must lie within a reasonable range (100cm-250cm)", exception.getMessage());
+        assertEquals("A persons height must lie within a reasonable range (50cm-260cm)", exception.getMessage());
     }
 
     @ParameterizedTest

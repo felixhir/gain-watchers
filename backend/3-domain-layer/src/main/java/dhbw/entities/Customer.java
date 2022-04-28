@@ -1,6 +1,6 @@
 package dhbw.entities;
 
-import dhbw.valueObjects.Weight;
+import dhbw.valueObjects.*;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -13,36 +13,27 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-    private int height;
+    @Embedded
+    private Name name;
+    @Embedded
+    private Height height;
 
     @Embedded
     private Weight weight;
-    private int bodyFatPercentage;
-    private int availability;
+    @Embedded
+    private BodyFatPercentage bodyFatPercentage;
+    @Embedded
+    private Availability availability;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<Workout> workouts;
 
     public Customer(String name, int height, double weight, int bodyFatPercentage, int availability) {
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException("Every customer must have a name");
-        }
-        if (height < 100 || height > 250) {
-            throw new IllegalArgumentException("A persons height must lie within a reasonable range (100cm-250cm)");
-        }
-        if (bodyFatPercentage < 1 || bodyFatPercentage > 100) {
-            throw new IllegalArgumentException("A persons body fat cannot be less than 1% or more than 100%");
-        }
-        if (availability < 0 || availability > 7) {
-            throw new IllegalArgumentException("A week cannot have negative or more than 7 days");
-        }
-
-        this.name = name;
-        this.height = height;
+        this.name = new Name(name);
+        this.height = new Height(height);
         this.weight = new Weight(weight, true);
-        this.bodyFatPercentage = bodyFatPercentage;
-        this.availability = availability;
+        this.bodyFatPercentage = new BodyFatPercentage(bodyFatPercentage);
+        this.availability = new Availability(availability);
         this.workouts = new LinkedList<>();
     }
 
@@ -55,11 +46,11 @@ public class Customer {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getHeight() {
-        return height;
+        return height.getHeightInCm();
     }
 
     public double getWeight() {
@@ -67,11 +58,11 @@ public class Customer {
     }
 
     public int getBodyFatPercentage() {
-        return bodyFatPercentage;
+        return bodyFatPercentage.getBodyFatInPercent();
     }
 
     public int getAvailability() {
-        return availability;
+        return availability.getAvailability();
     }
 
     public List<Workout> getWorkouts() {
@@ -89,7 +80,7 @@ public class Customer {
     }
 
     private int availableDays() {
-        int total = this.availability;
+        int total = this.availability.getAvailability();
         for(Workout workout: workouts) {
             total -= workout.getDays();
         }

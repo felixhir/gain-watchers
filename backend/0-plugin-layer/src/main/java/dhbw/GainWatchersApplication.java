@@ -4,6 +4,7 @@ import dhbw.entities.*;
 import dhbw.repositories.CustomerRepository;
 import dhbw.repositories.ExerciseRepository;
 import dhbw.repositories.WorkoutRepository;
+import dhbw.valueObjects.WorkoutExercise;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

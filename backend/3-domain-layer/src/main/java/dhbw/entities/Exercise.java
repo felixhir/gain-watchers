@@ -1,6 +1,7 @@
 package dhbw.entities;
 
 import dhbw.helper.ExerciseKey;
+import dhbw.valueObjects.Name;
 
 import javax.persistence.*;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 public class Exercise {
 
     @Id
-    private String name;
+    private Name name;
     @Id
     private ExerciseVariant variant;
 
@@ -17,7 +18,7 @@ public class Exercise {
         if(name.isEmpty()) {
             throw new IllegalArgumentException("Every exercise has to have a name");
         }
-        this.name = name;
+        this.name = new Name(name);
         this.variant = variant;
     }
 
@@ -26,7 +27,7 @@ public class Exercise {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public ExerciseVariant getVariant() {

@@ -1,5 +1,8 @@
 package dhbw.entities;
 
+import dhbw.valueObjects.Name;
+import dhbw.valueObjects.WorkoutExercise;
+
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +11,7 @@ import java.util.List;
 public class Workout {
 
     @Id
-    private String name;
+    private Name name;
     private String description;
     private int days;
 
@@ -25,7 +28,7 @@ public class Workout {
         if(days < 1) {
             throw new IllegalArgumentException("A workout must be done at least once per week");
         }
-        this.name = name;
+        this.name = new Name(name);
         this.description = description;
         this.days = days;
         this.exercises = new LinkedList<>();
@@ -33,7 +36,7 @@ public class Workout {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public String getDescription() {
@@ -49,10 +52,7 @@ public class Workout {
     }
 
     public void setName(String name) {
-        if(name.isEmpty()) {
-            throw new IllegalArgumentException("Every workout must have a name");
-        }
-        this.name = name;
+        this.name = new Name(name);
     }
 
     public void setDescription(String description) {
