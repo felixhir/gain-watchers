@@ -1,7 +1,7 @@
 package dhbw.rest;
 
-import dhbw.entities.Exercise;
-import dhbw.entities.ExerciseVariant;
+import dhbw.valueObjects.Exercise;
+import dhbw.helper.ExerciseVariant;
 import dhbw.entities.Workout;
 import dhbw.valueObjects.WorkoutExercise;
 import dhbw.mapper.WorkoutExerciseResourceMapper;

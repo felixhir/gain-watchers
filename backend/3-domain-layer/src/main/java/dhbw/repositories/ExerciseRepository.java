@@ -1,7 +1,7 @@
 package dhbw.repositories;
 
-import dhbw.entities.Exercise;
-import dhbw.entities.ExerciseVariant;
+import dhbw.valueObjects.Exercise;
+import dhbw.helper.ExerciseVariant;
 
 import java.util.List;
 

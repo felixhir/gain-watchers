@@ -1,7 +1,7 @@
 package dhbw.services;
 
-import dhbw.entities.Exercise;
-import dhbw.entities.ExerciseVariant;
+import dhbw.valueObjects.Exercise;
+import dhbw.helper.ExerciseVariant;
 import dhbw.repositories.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

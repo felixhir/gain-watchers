@@ -1,7 +1,5 @@
 package dhbw.helper;
 
-import dhbw.entities.ExerciseVariant;
-
 import java.io.Serializable;
 
 public class ExerciseKey implements Serializable {

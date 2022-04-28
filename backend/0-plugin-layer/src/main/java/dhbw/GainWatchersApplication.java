@@ -1,9 +1,11 @@
 package dhbw;
 
 import dhbw.entities.*;
+import dhbw.helper.ExerciseVariant;
 import dhbw.repositories.CustomerRepository;
 import dhbw.repositories.ExerciseRepository;
 import dhbw.repositories.WorkoutRepository;
+import dhbw.valueObjects.Exercise;
 import dhbw.valueObjects.WorkoutExercise;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

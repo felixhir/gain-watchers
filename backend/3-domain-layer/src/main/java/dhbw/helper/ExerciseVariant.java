@@ -1,4 +1,4 @@
-package dhbw.entities;
+package dhbw.helper;
 
 public enum ExerciseVariant {
     CABLE("Cable"),
