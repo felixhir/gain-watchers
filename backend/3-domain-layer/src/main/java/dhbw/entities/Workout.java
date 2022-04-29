@@ -19,9 +19,6 @@ public class Workout {
     private List<WorkoutExercise> exercises;
 
     public Workout(String name, String description, int days, List<WorkoutExercise> exercises) {
-        if(name.isEmpty()) {
-            throw new IllegalArgumentException("Every workout must have a name");
-        }
         if(exercises.isEmpty()) {
             throw new IllegalArgumentException("A workout must contain at least 1 exercise");
         }

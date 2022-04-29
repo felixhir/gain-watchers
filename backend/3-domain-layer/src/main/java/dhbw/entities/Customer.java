@@ -12,12 +12,10 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @Embedded
     private Name name;
     @Embedded
     private Height height;
-
     @Embedded
     private Weight weight;
     @Embedded
