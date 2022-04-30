@@ -2,6 +2,7 @@ package dhbw.services;
 
 import dhbw.entities.Workout;
 import dhbw.repositories.WorkoutRepository;
+import dhbw.valueObjects.Name;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class WorkoutApplicationService {
         return workoutRepository.findAll();
     }
 
-    public Workout getByName(String name) {
+    public Workout getByName(Name name) {
         return workoutRepository.getByName(name);
     }
 

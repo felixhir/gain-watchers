@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Workout {
 
-    @Id
+    @EmbeddedId
     private Name name;
     private String description;
     private int days;
@@ -18,14 +18,14 @@ public class Workout {
     @OneToMany(cascade = CascadeType.MERGE)
     private List<WorkoutExercise> exercises;
 
-    public Workout(String name, String description, int days, List<WorkoutExercise> exercises) {
+    public Workout(Name name, String description, int days, List<WorkoutExercise> exercises) {
         if(exercises.isEmpty()) {
             throw new IllegalArgumentException("A workout must contain at least 1 exercise");
         }
         if(days < 1) {
             throw new IllegalArgumentException("A workout must be done at least once per week");
         }
-        this.name = new Name(name);
+        this.name = name;
         this.description = description;
         this.days = days;
         this.exercises = new LinkedList<>();
@@ -48,8 +48,8 @@ public class Workout {
         return this.days;
     }
 
-    public void setName(String name) {
-        this.name = new Name(name);
+    public void setName(Name name) {
+        this.name = name;
     }
 
     public void setDescription(String description) {

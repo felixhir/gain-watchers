@@ -10,14 +10,16 @@ import javax.persistence.*;
 @IdClass(ExerciseKey.class)
 public class Exercise {
 
-    @Id
     private Name name;
     @Id
     private ExerciseVariant variant;
+    @Id
+    private String nameValue;
 
-    public Exercise(String name, ExerciseVariant variant) {
-        this.name = new Name(name);
+    public Exercise(Name name, ExerciseVariant variant) {
+        this.name = name;
         this.variant = variant;
+        this.nameValue = name.getName();
     }
 
     public Exercise() {

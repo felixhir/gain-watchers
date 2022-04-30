@@ -1,10 +1,11 @@
 package dhbw.helper;
 
+import dhbw.valueObjects.Name;
 import java.io.Serializable;
 
 public class ExerciseKey implements Serializable {
 
-    private String name;
+    private String nameValue;
     private ExerciseVariant variant;
 
 }

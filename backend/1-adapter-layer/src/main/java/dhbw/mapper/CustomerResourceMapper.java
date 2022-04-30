@@ -2,6 +2,7 @@ package dhbw.mapper;
 
 import dhbw.entities.Customer;
 import dhbw.resources.CustomerResource;
+import dhbw.valueObjects.*;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
@@ -24,11 +25,11 @@ public class CustomerResourceMapper implements Function<Customer, CustomerResour
 
     public Customer reverse(CustomerResource newCustomer) {
         return new Customer(
-                newCustomer.getName(),
-                newCustomer.getHeight(),
-                newCustomer.getWeight(),
-                newCustomer.getBodyFatPercentage(),
-                newCustomer.getAvailability()
+                new Name(newCustomer.getName()),
+                new Height(newCustomer.getHeight()),
+                new Weight(newCustomer.getWeight(), true),
+                new BodyFatPercentage(newCustomer.getBodyFatPercentage()),
+                new Availability(newCustomer.getAvailability())
         );
     }
 }

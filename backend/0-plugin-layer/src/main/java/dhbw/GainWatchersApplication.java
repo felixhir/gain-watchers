@@ -6,7 +6,7 @@ import dhbw.repositories.CustomerRepository;
 import dhbw.repositories.ExerciseRepository;
 import dhbw.repositories.WorkoutRepository;
 import dhbw.entities.Exercise;
-import dhbw.valueObjects.WorkoutExercise;
+import dhbw.valueObjects.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,27 +28,27 @@ public class GainWatchersApplication {
                                   ExerciseRepository exerciseRepository,
                                   WorkoutRepository workoutRepository) {
         return (args -> {
-            exerciseRepository.save(new Exercise("Bench Press", ExerciseVariant.BARBELL));
-            Exercise deadlift = exerciseRepository.save(new Exercise("Deadlift", ExerciseVariant.BARBELL));
-            exerciseRepository.save(new Exercise("Squat", ExerciseVariant.BARBELL));
-            exerciseRepository.save(new Exercise("Lat Pulldown", ExerciseVariant.MACHINE));
-            exerciseRepository.save(new Exercise("Push-Ups", ExerciseVariant.BODY_WEIGHT));
+            exerciseRepository.save(new Exercise(new Name("Bench Press"), ExerciseVariant.BARBELL));
+            Exercise deadlift = exerciseRepository.save(new Exercise(new Name("Deadlift"), ExerciseVariant.BARBELL));
+            exerciseRepository.save(new Exercise(new Name("Squat"), ExerciseVariant.BARBELL));
+            exerciseRepository.save(new Exercise(new Name("Lat Pulldown"), ExerciseVariant.MACHINE));
+            exerciseRepository.save(new Exercise(new Name("Push-Ups"), ExerciseVariant.BODY_WEIGHT));
 
             List<WorkoutExercise> exercises = exerciseRepository.findAll()
                     .stream()
                     .map(exercise -> new WorkoutExercise(exercise, 5, 5))
                     .collect(Collectors.toList());
-            Workout workout = workoutRepository.save(new Workout("5x5 Basic", "", 3, exercises));
-            workoutRepository.save(new Workout("DEADLIFT EVERY DAY",
+            Workout workout = workoutRepository.save(new Workout(new Name("5x5 Basic"), "", 3, exercises));
+            workoutRepository.save(new Workout(new Name("DEADLIFT EVERY DAY"),
                     "This program is nothing but deadlifts, 7 times a week. It will probably wreck your spine",
                     7,
                     Arrays.asList(new WorkoutExercise(deadlift, 10, 5))));
 
-            Customer customer = new Customer("Max Mustermann", 180, 80, 15, 5);
+            Customer customer = new Customer(new Name("Max Mustermann"), new Height(180), new Weight(80, true), new BodyFatPercentage(15), new Availability(5));
             customer.addWorkout(workout);
             customerRepository.save(customer);
-            customerRepository.save(new Customer("Maxime Musterfrau", 175, 65.5, 20, 3));
-            customerRepository.save(new Customer("Maggus Rühl", 180, 125, 25, 7));
+            customerRepository.save(new Customer(new Name("Maxime Musterfrau"), new Height(175), new Weight(65.5, true), new BodyFatPercentage(20), new Availability(3)));
+            customerRepository.save(new Customer(new Name("Maggus Rühl"), new Height(180), new Weight(125, true), new BodyFatPercentage(25), new Availability(7)));
         });
     }
 }

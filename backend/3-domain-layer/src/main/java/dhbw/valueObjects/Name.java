@@ -1,9 +1,6 @@
 package dhbw.valueObjects;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-
 import javax.persistence.Embeddable;
-
 import java.io.Serializable;
 import java.util.Objects;
 

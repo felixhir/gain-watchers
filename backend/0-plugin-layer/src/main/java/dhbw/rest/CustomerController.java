@@ -6,6 +6,7 @@ import dhbw.mapper.CustomerResourceMapper;
 import dhbw.resources.CustomerResource;
 import dhbw.services.CustomerApplicationService;
 import dhbw.services.WorkoutApplicationService;
+import dhbw.valueObjects.Name;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,7 +65,7 @@ public class CustomerController {
     public ResponseEntity<?> assignWorkout(@PathVariable Long customerId, @RequestParam String workoutName) {
         try {
             Customer customer = this.customerApplicationService.getById(customerId);
-            Workout workout = this.workoutApplicationService.getByName(workoutName);
+            Workout workout = this.workoutApplicationService.getByName(new Name(workoutName));
             customer.addWorkout(workout);
             this.customerApplicationService.save(customer);
             return new ResponseEntity<>(customerResourceMapper.apply(customer), HttpStatus.OK);

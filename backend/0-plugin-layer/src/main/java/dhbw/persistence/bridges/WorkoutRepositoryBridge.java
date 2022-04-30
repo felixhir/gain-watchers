@@ -3,6 +3,7 @@ package dhbw.persistence.bridges;
 import dhbw.entities.Workout;
 import dhbw.persistence.repositories.SpringDataWorkoutRepository;
 import dhbw.repositories.WorkoutRepository;
+import dhbw.valueObjects.Name;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +30,7 @@ public class WorkoutRepositoryBridge implements WorkoutRepository {
     }
 
     @Override
-    public Workout getByName(String name) {
-        return springDataWorkoutRepository.getById(name);
+    public Workout getByName(Name name) {
+        return springDataWorkoutRepository.getWorkoutByName(name);
     }
 }

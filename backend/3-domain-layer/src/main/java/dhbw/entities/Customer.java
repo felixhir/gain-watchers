@@ -26,12 +26,12 @@ public class Customer {
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<Workout> workouts;
 
-    public Customer(String name, int height, double weight, int bodyFatPercentage, int availability) {
-        this.name = new Name(name);
-        this.height = new Height(height);
-        this.weight = new Weight(weight, true);
-        this.bodyFatPercentage = new BodyFatPercentage(bodyFatPercentage);
-        this.availability = new Availability(availability);
+    public Customer(Name name, Height height, Weight weight, BodyFatPercentage bodyFatPercentage, Availability availability) {
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+        this.bodyFatPercentage = bodyFatPercentage;
+        this.availability = availability;
         this.workouts = new LinkedList<>();
     }
 

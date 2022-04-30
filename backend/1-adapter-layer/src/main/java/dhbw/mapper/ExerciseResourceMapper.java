@@ -3,6 +3,7 @@ package dhbw.mapper;
 import dhbw.entities.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.resources.ExerciseResource;
+import dhbw.valueObjects.Name;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -20,6 +21,6 @@ public class ExerciseResourceMapper implements Function<Exercise, ExerciseResour
     }
 
     public Exercise reverse(ExerciseResource newExercise) {
-        return new Exercise(newExercise.getName(), ExerciseVariant.valueOf(newExercise.getExerciseVariant()));
+        return new Exercise(new Name(newExercise.getName()), ExerciseVariant.valueOf(newExercise.getExerciseVariant()));
     }
 }

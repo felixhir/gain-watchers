@@ -3,6 +3,7 @@ package dhbw.services;
 import dhbw.entities.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.repositories.ExerciseRepository;
+import dhbw.valueObjects.Name;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class ExerciseApplicationService {
         return exerciseRepository.save(exercise);
     }
 
-    public Exercise getById(String name, ExerciseVariant variant) {
+    public Exercise getById(Name name, ExerciseVariant variant) {
         return exerciseRepository.getById(name, variant);
     }
 }
