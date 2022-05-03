@@ -10,13 +10,13 @@ import java.util.Objects;
 
 @Entity
 @IdClass(ExerciseKey.class)
-public class Exercise {
+public final class Exercise {
 
-    private Name name;
+    private final Name name;
     @Id
-    private ExerciseVariant variant;
+    private final ExerciseVariant variant;
     @Id
-    private String nameValue; // this value is needed to utilize a composite key (@EmbeddedId)
+    private final String nameValue; // this value is needed to utilize a composite key (@EmbeddedId)
 
     public Exercise(Name name, ExerciseVariant variant) {
         this.name = name;
@@ -25,7 +25,10 @@ public class Exercise {
     }
 
     public Exercise() {
-        // default
+        // default for JPA
+        this.name = null;
+        this.variant = null;
+        this.nameValue = null;
     }
 
     public String getName() {

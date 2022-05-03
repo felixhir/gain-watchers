@@ -125,7 +125,7 @@ function loadCustomers() {
                 var customerFat = document.createElement("li")
                 customerFat.innerText = `Body Fat: ${customer["bodyFatPercentage"]}%`
                 var customerAvailability = document.createElement("li")
-                customerAvailability.innerText = `${customer["availability"]} days / week`
+                customerAvailability.innerText = `${customer["totalAvailability"]} days / week (${customer["availability"]} left)`
 
                 customerElement.appendChild(customerName)
                 detailList.appendChild(customerBaseStats)

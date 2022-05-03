@@ -7,15 +7,17 @@ public class CustomerResource {
     private Long id;
     private String name;
     private int availability;
+    private int totalAvailability;
     private double weight;
     private int height;
     private int bodyFatPercentage;
     private List<String> workouts;
 
-    public CustomerResource(Long id, String name, int availability, int bodyFatPercentage, double weight, int height, List<String> workouts) {
+    public CustomerResource(Long id, String name, int availability, int totalAvailability, int bodyFatPercentage, double weight, int height, List<String> workouts) {
         this.id = id;
         this.name = name;
         this.availability = availability;
+        this.totalAvailability = totalAvailability;
         this.weight = weight;
         this.height = height;
         this.workouts = workouts;
@@ -28,6 +30,10 @@ public class CustomerResource {
 
     public int getAvailability() {
         return availability;
+    }
+
+    public int getTotalAvailability() {
+        return totalAvailability;
     }
 
     public double getWeight() {
