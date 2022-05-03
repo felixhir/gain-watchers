@@ -27,6 +27,7 @@ function intoNameList(items) {
     var list = document.createElement("ul")
     for (var item of items) {
         var listElement = document.createElement("li")
+        listElement.classList = "exercise"
         listElement.innerText = item["name"]
         list.appendChild(listElement)
     }
@@ -37,7 +38,13 @@ function reloadEntities() {
     loadCustomers()
     loadWorkouts()
     getResources("exercises").then(exercises => {
-        var exerciseList = intoNameList(exercises)
+        var exerciseList = document.createElement("ul")
+        for (var exercise of exercises) {
+            var listElement = document.createElement("li")
+            listElement.classList = "exercise"
+            listElement.innerText = `${exercise["name"]} (${exercise["exerciseVariant"]})`
+            exerciseList.appendChild(listElement)
+        }
         exerciseList.id = "exercise-ul"
         document.getElementById("exercise-ul").replaceWith(exerciseList)
     })
