@@ -38,17 +38,17 @@ public class GainWatchersApplication {
                     .stream()
                     .map(exercise -> new WorkoutExercise(exercise, 5, 5))
                     .collect(Collectors.toList());
-            Workout workout = workoutRepository.save(new Workout(new Name("5x5 Basic"), "", 3, exercises));
+            Workout workout = workoutRepository.save(new Workout(new Name("5x5 Basic"), "", new DaysPerWeek(3), exercises));
             workoutRepository.save(new Workout(new Name("DEADLIFT EVERY DAY"),
                     "This program is nothing but deadlifts, 7 times a week. It will probably wreck your spine",
-                    7,
+                    new DaysPerWeek(7),
                     Arrays.asList(new WorkoutExercise(deadlift, 10, 5))));
 
-            Customer customer = new Customer(new Name("Max Mustermann"), new Height(180), new Weight(80, true), new BodyFatPercentage(15), new Availability(5));
+            Customer customer = new Customer(new Name("Max Mustermann"), new Height(180), new Weight(80, true), new BodyFatPercentage(15), new DaysPerWeek(5));
             customer.addWorkout(workout);
             customerRepository.save(customer);
-            customerRepository.save(new Customer(new Name("Maxime Musterfrau"), new Height(175), new Weight(65.5, true), new BodyFatPercentage(20), new Availability(3)));
-            customerRepository.save(new Customer(new Name("Maggus Rühl"), new Height(180), new Weight(125, true), new BodyFatPercentage(25), new Availability(7)));
+            customerRepository.save(new Customer(new Name("Maxime Musterfrau"), new Height(175), new Weight(65.5, true), new BodyFatPercentage(20), new DaysPerWeek(3)));
+            customerRepository.save(new Customer(new Name("Maggus Rühl"), new Height(180), new Weight(125, true), new BodyFatPercentage(25), new DaysPerWeek(7)));
         });
     }
 }

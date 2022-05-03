@@ -3,8 +3,6 @@ package dhbw.entities;
 import dhbw.valueObjects.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -16,13 +14,13 @@ class CustomerTest {
 
     @BeforeEach
     void setUp() {
-        customer = new Customer(new Name("Max Mustermann"), new Height(190), new Weight(80, true), new BodyFatPercentage(15), new Availability(3));
+        customer = new Customer(new Name("Max Mustermann"), new Height(190), new Weight(80, true), new BodyFatPercentage(15), new DaysPerWeek(3));
     }
 
     @Test
     void validCustomer() {
         assertDoesNotThrow(() ->
-                new Customer(new Name("Max Mustermann"), new Height(190), new Weight(80, true), new BodyFatPercentage(15), new Availability(3))
+                new Customer(new Name("Max Mustermann"), new Height(190), new Weight(80, true), new BodyFatPercentage(15), new DaysPerWeek(3))
         );
     }
 
@@ -36,7 +34,7 @@ class CustomerTest {
     @Test
     void exceedingCustomerAvailability() {
         Workout mockWorkout = mock(Workout.class);
-        when(mockWorkout.getDays()).thenReturn(7);
+        when(mockWorkout.getDays()).thenReturn(new DaysPerWeek(7));
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             customer.addWorkout(mockWorkout);

@@ -2,6 +2,7 @@ package dhbw.rest;
 
 import dhbw.entities.Customer;
 import dhbw.services.CustomerApplicationService;
+import dhbw.valueObjects.DaysPerWeek;
 import dhbw.valueObjects.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.entities.Workout;
@@ -50,7 +51,7 @@ public class WorkoutController {
     @PostMapping
     public ResponseEntity<?> createWorkout(@RequestBody WorkoutResource newWorkout) {
         try {
-            Workout toSave = new Workout(new Name(newWorkout.getName()), newWorkout.getDescription(), newWorkout.getDays(), getWorkoutExercisesFromWorkoutResource(newWorkout));
+            Workout toSave = new Workout(new Name(newWorkout.getName()), newWorkout.getDescription(), new DaysPerWeek(newWorkout.getDays()), getWorkoutExercisesFromWorkoutResource(newWorkout));
             Workout workout = workoutApplicationService.save(toSave);
             return new ResponseEntity<>(workout, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -63,7 +64,7 @@ public class WorkoutController {
         List<String> customerNames = new LinkedList<>();
         try {
             Workout workout = this.workoutApplicationService.getByName(new Name(id));
-            int daysMore = newWorkoutResource.getDays() - workout.getDays();
+            int daysMore = newWorkoutResource.getDays() - workout.getDays().getValue();
             List<Customer> customers = customerApplicationService.getByWorkout(workout);
             for(Customer customer: customers) {
                 if(customer.getAvailableDays() < daysMore) {
@@ -76,7 +77,7 @@ public class WorkoutController {
             }
             workout.setName(new Name(newWorkoutResource.getName()));
             workout.setDescription(newWorkoutResource.getDescription());
-            workout.setDays(newWorkoutResource.getDays());
+            workout.setDays(new DaysPerWeek(newWorkoutResource.getDays()));
             workout.setExercises(getWorkoutExercisesFromWorkoutResource(newWorkoutResource));
             return new ResponseEntity<>(this.workoutApplicationService.save(workout), HttpStatus.OK);
         } catch (Exception e) {

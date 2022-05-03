@@ -1,5 +1,6 @@
 package dhbw.entities;
 
+import dhbw.valueObjects.DaysPerWeek;
 import dhbw.valueObjects.Name;
 import dhbw.valueObjects.WorkoutExercise;
 
@@ -13,17 +14,17 @@ public class Workout {
     @EmbeddedId
     private Name name;
     private String description;
-    private int days;
+    private DaysPerWeek days;
 
     @OneToMany(cascade = CascadeType.MERGE)
     private List<WorkoutExercise> exercises;
 
-    public Workout(Name name, String description, int days, List<WorkoutExercise> exercises) {
+    public Workout(Name name, String description, DaysPerWeek days, List<WorkoutExercise> exercises) {
         if(exercises.isEmpty()) {
             throw new IllegalArgumentException("A workout must contain at least 1 exercise");
         }
-        if(days < 1) {
-            throw new IllegalArgumentException("A workout must be done at least once per week");
+        if(days.getValue() < 1) {
+            throw new IllegalArgumentException("A workout must be done at least once a week");
         }
         this.name = name;
         this.description = description;
@@ -44,7 +45,7 @@ public class Workout {
         return exercises;
     }
 
-    public int getDays() {
+    public DaysPerWeek getDays() {
         return this.days;
     }
 
@@ -56,7 +57,10 @@ public class Workout {
         this.description = description;
     }
 
-    public void setDays(int days) {
+    public void setDays(DaysPerWeek days) {
+        if(days.getValue() < 1) {
+            throw new IllegalArgumentException("A workout must be done at least once a week");
+        }
         this.days = days;
     }
 

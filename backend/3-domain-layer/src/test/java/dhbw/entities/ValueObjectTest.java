@@ -1,6 +1,6 @@
 package dhbw.entities;
 
-import dhbw.valueObjects.Availability;
+import dhbw.valueObjects.DaysPerWeek;
 import dhbw.valueObjects.BodyFatPercentage;
 import dhbw.valueObjects.Height;
 import dhbw.valueObjects.Name;
@@ -46,7 +46,7 @@ public class ValueObjectTest {
     @ValueSource(ints = {-1, 8})
     void invalidAvailability(int availability) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Availability(availability);
+            new DaysPerWeek(availability);
         });
 
         assertEquals("A week cannot have negative or more than 7 days", exception.getMessage());

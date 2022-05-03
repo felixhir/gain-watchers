@@ -29,7 +29,7 @@ public class CustomerResourceMapper implements Function<Customer, CustomerResour
                 new Height(newCustomer.getHeight()),
                 new Weight(newCustomer.getWeight(), true),
                 new BodyFatPercentage(newCustomer.getBodyFatPercentage()),
-                new Availability(newCustomer.getAvailability())
+                new DaysPerWeek(newCustomer.getAvailability())
         );
     }
 }

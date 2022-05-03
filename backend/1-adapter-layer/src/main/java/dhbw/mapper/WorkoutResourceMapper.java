@@ -16,7 +16,7 @@ public class WorkoutResourceMapper implements Function<Workout, WorkoutResource>
     }
 
     private WorkoutResource map(Workout workout) {
-        return new WorkoutResource(workout.getName(), workout.getDescription(), workout.getDays(),
+        return new WorkoutResource(workout.getName(), workout.getDescription(), workout.getDays().getValue(),
                 workout.getExercises().stream().map(new WorkoutExerciseResourceMapper()).collect(Collectors.toList()));
     }
 }

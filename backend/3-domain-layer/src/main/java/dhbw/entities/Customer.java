@@ -21,12 +21,12 @@ public class Customer {
     @Embedded
     private BodyFatPercentage bodyFatPercentage;
     @Embedded
-    private Availability availability;
+    private DaysPerWeek availability;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<Workout> workouts;
 
-    public Customer(Name name, Height height, Weight weight, BodyFatPercentage bodyFatPercentage, Availability availability) {
+    public Customer(Name name, Height height, Weight weight, BodyFatPercentage bodyFatPercentage, DaysPerWeek availability) {
         this.name = name;
         this.height = height;
         this.weight = weight;
@@ -60,7 +60,7 @@ public class Customer {
     }
 
     public int getTotalAvailability() {
-        return availability.getAvailability();
+        return availability.getValue();
     }
 
     public List<Workout> getWorkouts() {
@@ -71,16 +71,16 @@ public class Customer {
         if (workouts.contains(workout)) {
             throw new IllegalArgumentException("This workout has already been assigned to the customer");
         }
-        if (getAvailableDays() < workout.getDays()) {
+        if (getAvailableDays() < workout.getDays().getValue()) {
             throw new IllegalArgumentException("This workout does not fit the customers schedule");
         }
         workouts.add(workout);
     }
 
     public int getAvailableDays() {
-        int total = this.availability.getAvailability();
+        int total = this.availability.getValue();
         for(Workout workout: workouts) {
-            total -= workout.getDays();
+            total -= workout.getDays().getValue();
         }
         return total;
     }
