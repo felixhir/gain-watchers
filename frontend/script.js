@@ -168,7 +168,7 @@ function loadCustomers() {
                             response.text().then(errorMessage => {
                                 displayError(errorMessage)
                             })
-                        } else if(response.status == 201) {
+                        } else if(response.status == 200) {
                             loadCustomers()
                         } else {
                             displayError("Internal Server Error")
