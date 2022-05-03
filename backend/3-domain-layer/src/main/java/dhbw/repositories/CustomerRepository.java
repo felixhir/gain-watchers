@@ -1,6 +1,7 @@
 package dhbw.repositories;
 
 import dhbw.entities.Customer;
+import dhbw.entities.Workout;
 
 import java.util.List;
 
@@ -11,4 +12,6 @@ public interface CustomerRepository {
     List<Customer> findAll();
 
     Customer getById(Long uuid);
+
+    List<Customer> getByWorkout(Workout workout);
 }

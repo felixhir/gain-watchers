@@ -1,6 +1,8 @@
 package dhbw.rest;
 
-import dhbw.entities.Exercise;
+import dhbw.entities.Customer;
+import dhbw.services.CustomerApplicationService;
+import dhbw.valueObjects.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.entities.Workout;
 import dhbw.valueObjects.Name;
@@ -27,13 +29,15 @@ public class WorkoutController {
 
     private WorkoutApplicationService workoutApplicationService;
     private ExerciseApplicationService exerciseApplicationService;
+    private CustomerApplicationService customerApplicationService;
     private WorkoutResourceMapper workoutResourceMapper;
 
     @Autowired
-    public WorkoutController(WorkoutApplicationService workoutApplicationService, WorkoutResourceMapper workoutResourceMapper, ExerciseApplicationService exerciseApplicationService) {
+    public WorkoutController(WorkoutApplicationService workoutApplicationService, WorkoutResourceMapper workoutResourceMapper, ExerciseApplicationService exerciseApplicationService, CustomerApplicationService customerApplicationService) {
         this.workoutApplicationService = workoutApplicationService;
         this.workoutResourceMapper = workoutResourceMapper;
         this.exerciseApplicationService = exerciseApplicationService;
+        this.customerApplicationService = customerApplicationService;
     }
 
     @GetMapping
@@ -56,8 +60,20 @@ public class WorkoutController {
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<?> updateWorkout(@PathVariable String id, @RequestBody WorkoutResource newWorkoutResource) {
+        List<String> customerNames = new LinkedList<>();
         try {
             Workout workout = this.workoutApplicationService.getByName(new Name(id));
+            int daysMore = newWorkoutResource.getDays() - workout.getDays();
+            List<Customer> customers = customerApplicationService.getByWorkout(workout);
+            for(Customer customer: customers) {
+                if(customer.getAvailableDays() < daysMore) {
+                    customerNames.add(customer.getName());
+                }
+            }
+            if(!customerNames.isEmpty()) {
+                return new ResponseEntity<>(String.format("This change would exceed some customers availability (%s)", String.join(", ", customerNames)),
+                        HttpStatus.BAD_REQUEST);
+            }
             workout.setName(new Name(newWorkoutResource.getName()));
             workout.setDescription(newWorkoutResource.getDescription());
             workout.setDays(newWorkoutResource.getDays());

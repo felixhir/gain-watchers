@@ -1,7 +1,5 @@
 package dhbw.valueObjects;
 
-import dhbw.entities.Exercise;
-
 import javax.persistence.*;
 
 import static java.util.Objects.hash;

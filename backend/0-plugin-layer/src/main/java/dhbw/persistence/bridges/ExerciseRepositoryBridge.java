@@ -1,6 +1,6 @@
 package dhbw.persistence.bridges;
 
-import dhbw.entities.Exercise;
+import dhbw.valueObjects.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.persistence.repositories.SpringDataExerciseRepository;
 import dhbw.repositories.ExerciseRepository;

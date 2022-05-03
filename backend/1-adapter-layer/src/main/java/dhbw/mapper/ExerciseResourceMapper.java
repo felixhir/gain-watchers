@@ -1,6 +1,6 @@
 package dhbw.mapper;
 
-import dhbw.entities.Exercise;
+import dhbw.valueObjects.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.resources.ExerciseResource;
 import dhbw.valueObjects.Name;

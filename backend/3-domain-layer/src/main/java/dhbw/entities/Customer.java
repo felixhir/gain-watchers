@@ -59,7 +59,7 @@ public class Customer {
         return bodyFatPercentage.getBodyFatInPercent();
     }
 
-    public int getAvailability() {
+    public int getTotalAvailability() {
         return availability.getAvailability();
     }
 
@@ -71,13 +71,13 @@ public class Customer {
         if (workouts.contains(workout)) {
             throw new IllegalArgumentException("This workout has already been assigned to the customer");
         }
-        if (availableDays() < workout.getDays()) {
+        if (getAvailableDays() < workout.getDays()) {
             throw new IllegalArgumentException("This workout does not fit the customers schedule");
         }
         workouts.add(workout);
     }
 
-    private int availableDays() {
+    public int getAvailableDays() {
         int total = this.availability.getAvailability();
         for(Workout workout: workouts) {
             total -= workout.getDays();

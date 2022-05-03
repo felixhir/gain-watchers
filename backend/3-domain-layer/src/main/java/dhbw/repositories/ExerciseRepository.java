@@ -1,6 +1,6 @@
 package dhbw.repositories;
 
-import dhbw.entities.Exercise;
+import dhbw.valueObjects.Exercise;
 import dhbw.helper.ExerciseVariant;
 import dhbw.valueObjects.Name;
 
