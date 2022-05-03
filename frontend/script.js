@@ -23,17 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
-function intoNameList(items) {
-    var list = document.createElement("ul")
-    for (var item of items) {
-        var listElement = document.createElement("li")
-        listElement.classList = "exercise"
-        listElement.innerText = item["name"]
-        list.appendChild(listElement)
-    }
-    return list
-}
-
 function reloadEntities() {
     loadCustomers()
     loadWorkouts()
