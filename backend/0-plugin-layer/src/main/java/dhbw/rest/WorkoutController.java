@@ -81,7 +81,6 @@ public class WorkoutController {
             workout.setExercises(getWorkoutExercisesFromWorkoutResource(newWorkoutResource));
             return new ResponseEntity<>(this.workoutApplicationService.save(workout), HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
