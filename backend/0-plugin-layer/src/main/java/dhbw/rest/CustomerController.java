@@ -25,7 +25,9 @@ public class CustomerController {
     private WorkoutApplicationService workoutApplicationService;
 
     @Autowired
-    public CustomerController(CustomerApplicationService customerApplicationService, CustomerResourceMapper customerResourceMapper, WorkoutApplicationService workoutApplicationService) {
+    public CustomerController(CustomerApplicationService customerApplicationService,
+                              CustomerResourceMapper customerResourceMapper,
+                              WorkoutApplicationService workoutApplicationService) {
         this.customerApplicationService = customerApplicationService;
         this.customerResourceMapper = customerResourceMapper;
         this.workoutApplicationService = workoutApplicationService;

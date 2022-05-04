@@ -16,7 +16,11 @@ public class WorkoutExerciseResourceMapper implements Function<WorkoutExercise, 
     }
 
     private WorkoutExerciseResource map(WorkoutExercise workoutExercise) {
-        return new WorkoutExerciseResource(workoutExercise.getExercise().getName(), workoutExercise.getExercise().getVariant().getName(), workoutExercise.getReps(), workoutExercise.getSets());
+        return new WorkoutExerciseResource(workoutExercise.getExercise().getName(),
+                workoutExercise.getExercise().getVariant().getName(),
+                workoutExercise.getReps(),
+                workoutExercise.getSets()
+        );
     }
 
     public WorkoutExercise reverse(WorkoutExerciseResource workoutExerciseResource, Exercise exercise) {

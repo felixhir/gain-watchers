@@ -34,7 +34,10 @@ public class WorkoutController {
     private WorkoutResourceMapper workoutResourceMapper;
 
     @Autowired
-    public WorkoutController(WorkoutApplicationService workoutApplicationService, WorkoutResourceMapper workoutResourceMapper, ExerciseApplicationService exerciseApplicationService, CustomerApplicationService customerApplicationService) {
+    public WorkoutController(WorkoutApplicationService workoutApplicationService,
+                             WorkoutResourceMapper workoutResourceMapper,
+                             ExerciseApplicationService exerciseApplicationService,
+                             CustomerApplicationService customerApplicationService) {
         this.workoutApplicationService = workoutApplicationService;
         this.workoutResourceMapper = workoutResourceMapper;
         this.exerciseApplicationService = exerciseApplicationService;
@@ -51,7 +54,11 @@ public class WorkoutController {
     @PostMapping
     public ResponseEntity<?> createWorkout(@RequestBody WorkoutResource newWorkout) {
         try {
-            Workout toSave = new Workout(new Name(newWorkout.getName()), newWorkout.getDescription(), new DaysPerWeek(newWorkout.getDays()), getWorkoutExercisesFromWorkoutResource(newWorkout));
+            Workout toSave = new Workout(new Name(newWorkout.getName()),
+                    newWorkout.getDescription(),
+                    new DaysPerWeek(newWorkout.getDays()),
+                    getWorkoutExercisesFromWorkoutResource(newWorkout)
+            );
             Workout workout = workoutApplicationService.save(toSave);
             return new ResponseEntity<>(workout, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -89,7 +96,9 @@ public class WorkoutController {
         List<WorkoutExercise> exercises = new LinkedList<>();
         WorkoutExerciseResourceMapper mapper = new WorkoutExerciseResourceMapper();
         for (WorkoutExerciseResource resource: workoutResource.getExercises()) {
-            Exercise exercise = this.exerciseApplicationService.getById(new Name(resource.getExerciseName()), ExerciseVariant.valueOf(resource.getExerciseVariant()));
+            Exercise exercise = this.exerciseApplicationService.getById(new Name(resource.getExerciseName()),
+                    ExerciseVariant.valueOf(resource.getExerciseVariant())
+            );
             exercises.add(mapper.reverse(resource, exercise));
         }
         return exercises;

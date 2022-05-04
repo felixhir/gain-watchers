@@ -44,11 +44,23 @@ public class GainWatchersApplication {
                     new DaysPerWeek(7),
                     Arrays.asList(new WorkoutExercise(deadlift, 10, 5))));
 
-            Customer customer = new Customer(new Name("Max Mustermann"), new Height(180), new Weight(80, true), new BodyFatPercentage(15), new DaysPerWeek(5));
+            Customer customer = new Customer(new Name("Max Mustermann"),
+                    new Height(180),
+                    new Weight(80, true),
+                    new BodyFatPercentage(15),
+                    new DaysPerWeek(5));
             customer.addWorkout(workout);
             customerRepository.save(customer);
-            customerRepository.save(new Customer(new Name("Maxime Musterfrau"), new Height(175), new Weight(65.5, true), new BodyFatPercentage(20), new DaysPerWeek(3)));
-            customerRepository.save(new Customer(new Name("Maggus Rühl"), new Height(180), new Weight(125, true), new BodyFatPercentage(25), new DaysPerWeek(7)));
+            customerRepository.save(new Customer(new Name("Maxime Musterfrau"),
+                    new Height(175),
+                    new Weight(65.5, true),
+                    new BodyFatPercentage(20),
+                    new DaysPerWeek(3)));
+            customerRepository.save(new Customer(new Name("Maggus Rühl"),
+                    new Height(180),
+                    new Weight(125, true),
+                    new BodyFatPercentage(25),
+                    new DaysPerWeek(7)));
         });
     }
 }

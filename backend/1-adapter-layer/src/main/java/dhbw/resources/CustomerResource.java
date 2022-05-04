@@ -13,7 +13,14 @@ public class CustomerResource {
     private int bodyFatPercentage;
     private List<String> workouts;
 
-    public CustomerResource(Long id, String name, int availability, int totalAvailability, int bodyFatPercentage, double weight, int height, List<String> workouts) {
+    public CustomerResource(Long id,
+                            String name,
+                            int availability,
+                            int totalAvailability,
+                            int bodyFatPercentage,
+                            double weight,
+                            int height,
+                            List<String> workouts) {
         this.id = id;
         this.name = name;
         this.availability = availability;
