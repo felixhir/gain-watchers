@@ -50,7 +50,9 @@ public class WorkoutExercise {
     public boolean equals(Object object) {
         if (object instanceof WorkoutExercise) {
             WorkoutExercise workoutExerciseObject = (WorkoutExercise) object;
-            return (workoutExerciseObject.exercise == this.exercise && workoutExerciseObject.getReps() == this.reps && workoutExerciseObject.getSets() == this.sets);
+            return (workoutExerciseObject.exercise == this.exercise
+                    && workoutExerciseObject.getReps() == this.reps
+                    && workoutExerciseObject.getSets() == this.sets);
         }
         return false;
     }

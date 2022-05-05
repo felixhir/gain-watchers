@@ -26,7 +26,10 @@ class CustomerTest {
 
     @Test
     void addWorkout() {
-        customer.addWorkout(mock(Workout.class));
+        Workout mockWorkout = mock(Workout.class);
+        when(mockWorkout.getDays()).thenReturn(new DaysPerWeek(1));
+
+        customer.addWorkout(mockWorkout);
 
         assertEquals(1, customer.getWorkouts().size());
     }
@@ -46,6 +49,7 @@ class CustomerTest {
     @Test
     void addWorkoutMoreThanOnce() {
         Workout mockWorkout = mock(Workout.class);
+        when(mockWorkout.getDays()).thenReturn(new DaysPerWeek(1));
 
         customer.addWorkout(mockWorkout);
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
